@@ -1,0 +1,36 @@
+{
+  "navigation.home": "Home",
+  "navigation.about": "About Us",
+  "navigation.articles": "News & Articles",
+  "navigation.education": "Education",
+  "navigation.contact": "Contact Us",
+  "navigation.products": "Product Introduction",
+  "navigation.gallery": "Gallery",
+  "navigation.catalogs": "Catalogs",
+  "navigation.testimonials": "User Reviews",
+  "navigation.pageNotFound": "404 Page",
+  "navigation.bookAppointment": "Book Appointment",
+  "navigation.logout": "Logout",
+  "about.description": "Zhoobin Shahyad Company started in 2018 with the aim of introducing the most advanced minimally invasive spinal surgery methods...",
+  "about.title": "We are ready to help improve your treatment."
+ ,"about.yearsOfExperience":"15 years of experience"
+  ,"contact.addressClinic":"Address of the Zhobin Pain Clinic: Tehran, Azadi St., Eskandari Intersection, Negin Azadi Tower, 4th Floor"
+ ,"contact.addressCompany": "Company address: Tehran, West Zaratasht St., No. 6, Unit 94"
+  ,"contact.MobileTitle":"Mobile"
+  ,"contact.EmailTitle":"Email"
+  ,"contact.addressTitle":"Address"
+    ,"contact.locationTitle":"Where can you find us?"
+    ,"contact.CustomerName":"ُName"
+    ,"contact.CustomerEmail":"ُEmail"
+    ,"contact.CustomerPhone":"ُPhone"
+    ,"contact.CustomerProject":"ُProject"
+    ,"contact.CustomerSubject":"ُSubject"
+    ,"contact.CustomerMessage":"Message"
+    ,"contact.Text":"We are always ready to answer your questions, receive your suggestions, and provide guidance regarding orthopedic products."
+    ,"button.discoverMore":"Discover More",
+    "txtTitleBanner":"پیشرو در نوآوری های صنعت سلامت",
+"txtDescBanner":"Our Mission is to Improve the Community Health by Providing Innovative Solutions"
+,"download.catalog":"Download catalog",
+"download.video":"Download video",
+"video.message":"Your browser does not support video playback."
+}

@@ -1,0 +1,36 @@
+{
+  "navigation.home": "الصفحة الرئيسية",
+  "navigation.about": "من نحن",
+  "navigation.articles": "الأخبار والمقالات",
+  "navigation.education": "التعليم",
+  "navigation.contact": "اتصل بنا",
+  "navigation.products": "عرض المنتجات",
+  "navigation.gallery": "المعرض",
+  "navigation.catalogs": "الكتالوجات",
+  "navigation.testimonials": "آراء المستخدمين",
+  "navigation.pageNotFound": "صفحة 404",
+  "navigation.bookAppointment": "حجز موعد",
+  "navigation.logout": "تسجيل الخروج",
+  "about.description": "بدأت شركة ژوبین شهیاد نشاطها منذ عام 2018 بهدف تعريف الأطباء والجراحين المهرة بأحدث طرق جراحة العمود الفقري..."
+      ,"about.title":"نحن هنا لمساعدتك في الحصول على أفضل علاج ممكن."
+       ,"about.yearsOfExperience":"خبرة 15 سنة"
+  ,"contact.addressClinic":"عنوان عيادة زوبين للألم: طهران، شارع آزادي، تقاطع إسكندري، برج نجين آزادي، الطابق الرابع"
+  ,"contact.addressCompany":"ادرس الشركة: طهران، شارع زراتشت الغربي، رقم ٦، الوحدة ٩٤"
+    ,"contact.MobileTitle":"موبایل"
+    ,"contact.EmailTitle":"ایمیل"
+    ,"contact.CustomerName":"الاسم"
+        ,"contact.locationTitle":" أين يمكنك أن تجدنا؟"
+,"contact.CustomerEmail": "البريد الإلكتروني"
+,"contact.CustomerPhone":"الهاتف"
+,"contact.CustomerProject": "مشروع"
+,"contact.CustomerSubject":"الموضوع"
+,"contact.CustomerMessage":"رسالة"
+,"contact.Text":"نحن دائماً جاهزون للإجابة على استفساراتكم، استقبال اقتراحاتكم، وتقديم الاستشارات بخصوص شراء منتجاتنا الطبية والـعظامية."
+,"button.discoverMore":"اكتشف المزيد",
+"txtTitleBanner":"پیشرو در نوآوری های صنعت سلامت",
+"txtDescBanner":"پیشرو در نوآوری های صنعت سلامت",
+"download.catalog":"تنزيل الكتالوج",
+"download.video":"تنزيل الویدیو",
+"video.message":"متصفحك لا يدعم تشغيل الفيديو."
+
+}

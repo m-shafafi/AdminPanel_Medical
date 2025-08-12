@@ -20,7 +20,7 @@ const Education = () => {
 
   const state = location.state as TrainingCategoriesListResponse | null;
   const { loading, setLoading } = useLoading();
-
+console.log({loading})
   
 
    if (!state?.id) {

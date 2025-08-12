@@ -46,7 +46,25 @@ const Navbar = () => {
   }, [trainingData, categoryProduct]);
 
 
+const closeNavbar = () => {
+  // Close mobile menu
+  const navbarCollapse = document.getElementById("navbarCollapse");
+  if (navbarCollapse?.classList.contains("active")) {
+    (window as any).bootstrap?.Collapse
+      ? new (window as any).bootstrap.Collapse(navbarCollapse, { toggle: true })
+      : navbarCollapse.classList.remove("active");
+  }
 
+  // Close any open dropdown
+  document.querySelectorAll(".dropdown-menu.show").forEach((dropdown) => {
+    dropdown.classList.remove("active");
+  });
+};
+
+const handleNavClick = () => {
+  setLoading(true);
+  closeNavbar();
+};
 
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "nav-item nav-link active" : "nav-item nav-link";
@@ -78,8 +96,8 @@ const Navbar = () => {
       {/* لینک‌ها */}
       <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">
         <div className="navbar-nav mx-auto py-0">
-          <NavLink onClick={() => setLoading(true)} to="/" end className={getNavLinkClass}>{t("navigation.home")}</NavLink>
-          <NavLink onClick={() => setLoading(true)} to="/about" className={getNavLinkClass}>{t("navigation.about")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/" end className={getNavLinkClass}>{t("navigation.home")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/about" className={getNavLinkClass}>{t("navigation.about")}</NavLink>
 
           {/* محصولات */}
           <div className="nav-item dropdown">
@@ -97,7 +115,7 @@ const Navbar = () => {
                   to="/products"
                   state={val}
                   className="dropdown-item"
-                  onClick={() => setLoading(true)}
+                  onClick={handleNavClick}
                 >
                   {getLocalizedValue(val, "name")}
                 </NavLink>
@@ -119,7 +137,7 @@ const Navbar = () => {
                   to="/education"
                   state={value}
                   className="dropdown-item"
-                  onClick={() => setLoading(true)}
+                  onClick={handleNavClick}
                 >
                   {value.name}
                   
@@ -128,11 +146,11 @@ const Navbar = () => {
             </div>
           </div>
 
-          <NavLink onClick={() => setLoading(true)} to="/catalogs" className={getNavLinkClass}>{t("navigation.catalogs")}</NavLink>
-          <NavLink onClick={() => setLoading(true)} to="/gallery" className={getNavLinkClass}>{t("navigation.gallery")}</NavLink>
-          <NavLink onClick={() => setLoading(true)} to="/NewsAndArticlesPage" className={getNavLinkClass}>{t("navigation.articles")}</NavLink>
-          <NavLink onClick={() => setLoading(true)} to="/testimonials" className={getNavLinkClass}>{t("navigation.testimonials")}</NavLink>
-          <NavLink onClick={() => setLoading(true)} to="/contact" className={getNavLinkClass}>{t("navigation.contact")}</NavLink>
+          <NavLink onClick={ handleNavClick} to="/catalogs" className={getNavLinkClass}>{t("navigation.catalogs")}</NavLink>
+          <NavLink onClick={handleNavClick } to="/gallery" className={getNavLinkClass}>{t("navigation.gallery")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/NewsAndArticlesPage" className={getNavLinkClass}>{t("navigation.articles")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/testimonials" className={getNavLinkClass}>{t("navigation.testimonials")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/contact" className={getNavLinkClass}>{t("navigation.contact")}</NavLink>
         </div>
       </div>
     </nav>

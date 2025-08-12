@@ -7,11 +7,11 @@ import ProductListResponse from "common/entities/Product/ProductListResponse";
 import useGetAllProducts from "../../../hooks/useGetAllProduct";
 import { useLocation } from "react-router-dom";
 import i18n from "i18n";
-import Loading from "pages/Components/Loading/Loading";
 import CatalogCard from "pages/Components/Catalog/CatalogCard";
 import "./CatalogPage.css"; // styles for better design
 import DownloadButton from "pages/Components/DownloadButton";
 import { Document, Page } from "react-pdf";
+import LoadingModal from "pages/Components/Loading/Loading";
 
 
 export interface CategoryItem {
@@ -89,12 +89,13 @@ const CatalogPage: React.FC = () => {
 
 
         {loading ? (
-          <Loading message={t("loading.catalog")} />
+                <LoadingModal isOpen={loading} message="Please wait, processing..." />
+
         ) : products.length === 0 ? (
           <p className="no-items">{t("messages.noCatalog")}</p>
         ) : (
           <div className="catalog-grid">
-           {products.map((item) => (
+           {products.map((item) => (  
             <>       
    <CatalogCard
     key={item.id}

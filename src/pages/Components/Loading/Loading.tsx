@@ -1,17 +1,22 @@
-import React from "react";
-import "./Loading.css"; // Import the CSS file
+import React, { FC } from "react";
+import "./Loading.css";
 
-interface LoadingProps {
+interface LoadingModalProps {
+  isOpen: boolean;
   message?: string;
 }
 
-const Loading: React.FC<LoadingProps> = ({ message = "Loading..." }) => {
+const LoadingModal: FC<LoadingModalProps> = ({ isOpen, message = "Loading..." }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="loading-container">
-      <div className="loading-spinner"></div>
-      <span className="loading-text">{message}</span>
+    <div className="loading-modal-overlay">
+      <div className="loading-modal">
+        <div className="spinner"></div>
+        <p>{message}</p>
+      </div>
     </div>
   );
 };
 
-export default Loading;
+export default LoadingModal;

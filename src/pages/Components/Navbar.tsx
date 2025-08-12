@@ -7,6 +7,7 @@ import useGetAllTrainingCategories from "hooks/useGetAllTrainingCategories";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import useGetAllCategoryProduct from "hooks/useGetAllCategoryProduct";
+import { useLoading } from "./Loading/LoadingContext";
 
 
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
@@ -25,6 +26,7 @@ const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => 
 const Navbar = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const { setLoading } = useLoading(); // use global loading
 
    // بررسی فعال بودن صفحه محصولات
   const isProductPage = location.pathname.startsWith("/products");
@@ -38,17 +40,10 @@ const Navbar = () => {
   // دریافت دسته‌بندی‌ محصولات
   const { data: categoryProduct, error:errorProductCategory, isLoading:isLoadingProductCategory } = useGetAllCategoryProduct();
   const [productCategories, setProductCategories] = useState<CategoryProductListResponse[]>([]);
-
   useEffect(() => {
-    if (trainingData && trainingData.length > 0) {
-      setTrainingCategories(trainingData);
-    }
-
-    console.log({categoryProduct})
-    if (categoryProduct && categoryProduct.length > 0) {
-      setProductCategories(categoryProduct);
-    }
-  }, [trainingData,categoryProduct]);
+    if (trainingData?.length) setTrainingCategories(trainingData);
+    if (categoryProduct?.length) setProductCategories(categoryProduct);
+  }, [trainingData, categoryProduct]);
 
 
 
@@ -83,8 +78,8 @@ const Navbar = () => {
       {/* لینک‌ها */}
       <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">
         <div className="navbar-nav mx-auto py-0">
-          <NavLink to="/" end className={getNavLinkClass}>{t("navigation.home")}</NavLink>
-          <NavLink to="/about" className={getNavLinkClass}>{t("navigation.about")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/" end className={getNavLinkClass}>{t("navigation.home")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/about" className={getNavLinkClass}>{t("navigation.about")}</NavLink>
 
           {/* محصولات */}
           <div className="nav-item dropdown">
@@ -102,6 +97,7 @@ const Navbar = () => {
                   to="/products"
                   state={val}
                   className="dropdown-item"
+                  onClick={() => setLoading(true)}
                 >
                   {getLocalizedValue(val, "name")}
                 </NavLink>
@@ -123,18 +119,20 @@ const Navbar = () => {
                   to="/education"
                   state={value}
                   className="dropdown-item"
+                  onClick={() => setLoading(true)}
                 >
                   {value.name}
+                  
                 </NavLink>
               ))}
             </div>
           </div>
 
-          <NavLink to="/catalogs" className={getNavLinkClass}>{t("navigation.catalogs")}</NavLink>
-          <NavLink to="/gallery" className={getNavLinkClass}>{t("navigation.gallery")}</NavLink>
-          <NavLink to="/NewsAndArticlesPage" className={getNavLinkClass}>{t("navigation.articles")}</NavLink>
-          <NavLink to="/testimonials" className={getNavLinkClass}>{t("navigation.testimonials")}</NavLink>
-          <NavLink to="/contact" className={getNavLinkClass}>{t("navigation.contact")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/catalogs" className={getNavLinkClass}>{t("navigation.catalogs")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/gallery" className={getNavLinkClass}>{t("navigation.gallery")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/NewsAndArticlesPage" className={getNavLinkClass}>{t("navigation.articles")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/testimonials" className={getNavLinkClass}>{t("navigation.testimonials")}</NavLink>
+          <NavLink onClick={() => setLoading(true)} to="/contact" className={getNavLinkClass}>{t("navigation.contact")}</NavLink>
         </div>
       </div>
     </nav>

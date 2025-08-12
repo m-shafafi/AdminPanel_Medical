@@ -2,13 +2,16 @@ import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
 import Navbar from "../../Components/Navbar";
 import Topbar from "../../Components/Topbar";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TrainingListResponse from "common/entities/Education/TrainingListResponse";
 import i18n from "i18n";
 import useGetAllTraining from "hooks/useGetAllTraining";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
 import VideoPlayer from "pages/Components/VideoPlayer";
+import LoadingModal from "pages/Components/Loading/Loading";
+import { useLoading } from "pages/Components/Loading/LoadingContext";
+
 
 const Education = () => {
   const { t } = useTranslation();
@@ -16,24 +19,39 @@ const Education = () => {
   const location = useLocation();
 
   const state = location.state as TrainingCategoriesListResponse | null;
+  const { loading, setLoading } = useLoading();
 
-  if (!state?.id) {
-    console.warn("دسته بندی وجود ندارد", state);
+  
+
+   if (!state?.id) {
+    console.warn("state.Id is undefined:", state);
+  
   }
 
   const { data } = useGetAllTraining(currentLang);
   const [training, setTrainings] = useState<TrainingListResponse[]>([]);
 
-  useLayoutEffect(() => {
-    if (!data || data.length === 0) return;
-    if (!state?.id) {
-      console.warn("state.Id is undefined:", state);
-      return;
-    }
-    const productsList = data.filter((p) => p.categoryId === state.id);
-    setTrainings(productsList);
-  }, [data, state?.id, location.state]);
+useEffect(() => {
+  setLoading(true);
 
+  if (!data || data.length === 0) {
+    setLoading(false);
+    return;
+  }
+
+  if (!state?.id) {
+    console.warn("state.Id is undefined:", state);
+    setLoading(false);
+    return;
+  }
+
+  const result = data.filter((p) => p.categoryId === state.id);
+  setTrainings(result);
+
+  setLoading(false);
+}, [data, state?.id]);
+
+console.log({training})
   return (
     <>
       <Topbar />
@@ -47,6 +65,10 @@ const Education = () => {
         ]}
       />
 
+        {loading ? (
+                   <LoadingModal isOpen={loading} message="Please wait, processing..." />
+
+        ) : (
       <div className="container-fluid blog py-5">
         <div className="container py-5">
           <div className="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -93,6 +115,7 @@ const Education = () => {
           </div>
         </div>
       </div>
+        )}
     </>
   );
 };

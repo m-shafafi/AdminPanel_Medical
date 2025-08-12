@@ -31,6 +31,7 @@
 "txtDescBanner":"پیشرو در نوآوری های صنعت سلامت",
 "download.catalog":"تنزيل الكتالوج",
 "download.video":"تنزيل الویدیو",
-"video.message":"متصفحك لا يدعم تشغيل الفيديو."
+"video.message":"متصفحك لا يدعم تشغيل الفيديو.",
+"messages.noCatalog":"لا يوجد كتالوج."
 
 }

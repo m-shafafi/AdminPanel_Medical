@@ -35,5 +35,6 @@
 "download.video":"دانلود ویدیو",
 "video.message":"  مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.",
 "actions.viewPDF":"نمایش ",
-"actions.DownloadPDF":"دانلود "
+"actions.DownloadPDF":"دانلود ",
+"messages.noCatalog":"کاتالوگ وجود ندارد"
 }

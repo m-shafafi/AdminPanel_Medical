@@ -32,5 +32,6 @@
 "txtDescBanner":"Our Mission is to Improve the Community Health by Providing Innovative Solutions"
 ,"download.catalog":"Download catalog",
 "download.video":"Download video",
-"video.message":"Your browser does not support video playback."
+"video.message":"Your browser does not support video playback.",
+"messages.noCatalog":"There is no catalog."
 }

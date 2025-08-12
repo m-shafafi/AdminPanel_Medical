@@ -12,7 +12,6 @@ import CatalogCard from "pages/Components/Catalog/CatalogCard";
 import "./CatalogPage.css"; // styles for better design
 import DownloadButton from "pages/Components/DownloadButton";
 import { Document, Page } from "react-pdf";
-import PdfCover from "pages/Components/PdfCover";
 
 
 export interface CategoryItem {
@@ -97,13 +96,12 @@ const CatalogPage: React.FC = () => {
           <div className="catalog-grid">
            {products.map((item) => (
             <>       
-                 <PdfCover pdfUrl={item.catalogURL}/>
-  {/* <CatalogCard
+   <CatalogCard
     key={item.id}
     pdfUrl={item.catalogURL}
     title={getLocalizedValue(item, "name")}
     description={getLocalizedValue(item, "description") || "No description"}
-  /> */}
+  /> 
   </>
 
 ))}

@@ -9,15 +9,15 @@ interface CatalogCardProps {
   description: string;
 }
 
-const CatalogCard: React.FC<CatalogCardProps> = ({ pdfUrl, title, description }) => {
+const CatalogCard = (props:CatalogCardProps) => {
   return (
     <div className="catalog-card" style={{ border: "1px solid #ccc", padding: 10, borderRadius: 8 }}>
       <Document file="https://arxiv.org/pdf/quant-ph/0410100.pdf" loading="Loading preview..." noData="No PDF file">
         <Page pageNumber={1} width={250} />
       </Document>
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+      <h3>{props.title}</h3>
+      <p>{props.description}</p>
+      <a href={props.pdfUrl} target="_blank" rel="noopener noreferrer">
         📄 View PDF
       </a>
     </div>

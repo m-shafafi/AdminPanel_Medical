@@ -1,0 +1,22 @@
+
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { Mediator } from "@Mediatr/index";
+import ms from "ms";
+import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
+import GetAllCategoryProductQuery from "business/application/Product/Category/GetAllCategoryProductQuery";
+
+
+const mediator = new Mediator();
+
+ const useGetAllCategoryProduct=()=> {
+ return  useQuery({
+        queryKey: ['GetAllCateguriesProduct'],
+        queryFn: () => mediator.send<CategoryProductListResponse[]>(new GetAllCategoryProductQuery()),
+        staleTime: ms('30m'),
+        onSuccess:(data)=> {  console.log("ddd" ,data)  },
+        onError: ( variables ) => {console.log("hooks error" ,variables)   },
+        retry: false
+    });
+
+}
+export default useGetAllCategoryProduct;

@@ -8,29 +8,14 @@ import React, { useEffect, useState } from "react";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
 import i18n from "i18n";
 import DownloadButton from "pages/Components/DownloadButton";
+import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 
-export interface CategoryItem {
-  Id: number;
-  creationDateTime: string;
-  modificationDateTime: string;
-  creationDateTimeShamsi?: string;
-  modificationDateTimeShamsi?: string;
-  Name_FA: string;
-  Name_EN: string;
-  Name_AR: string;
-  Description: string;
-  Permalink: string;
-  Active: boolean;
-  Priority: number;
-  BannerUrl: string;
-  IconUrl: string;
-  ThumbnailUrl: string;
-}
+
 
 const Products = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const state = location.state as CategoryItem;
+  const state = location.state as CategoryProductListResponse;
 
   const { data, error } = useGetAllProducts();
 
@@ -39,9 +24,9 @@ const Products = () => {
   useEffect(() => {
     if (!data || data.length === 0) return;
     console.log({ data });
-    const productsList = data.filter((p) => p.categoryId === state.Id);
+    const productsList = data.filter((p) => p.categoryId === state.id);
     setProducts(productsList);
-  }, [data, state.Id]);
+  }, [data, state.id]);
 
   const getLocalizedValue = (
     product: ProductListResponse,
@@ -57,7 +42,7 @@ const Products = () => {
         return product[`${field}_FA`];
     }
   };
-  const getLocalizedValueCategury = (item: CategoryItem, field: "Name") => {
+  const getLocalizedValueCategury = (item: CategoryProductListResponse, field: "name") => {
     switch (i18n.language) {
       case "en-GB":
         return item[`${field}_EN`];
@@ -75,6 +60,8 @@ const Products = () => {
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
         title={t("navigation.products")}
+        
+       txtTitleBanner={t("navigation.products")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
@@ -91,7 +78,7 @@ const Products = () => {
                 className="sub-title px-3 mb-0 font-black"
                 style={{ fontSize: "6rem" }}
               >
-                {getLocalizedValueCategury(state, "Name")}
+                {getLocalizedValueCategury(state, "name")}
               </h1>
             </div>
           </div>

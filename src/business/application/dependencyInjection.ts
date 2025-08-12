@@ -1,5 +1,7 @@
 export * from "../application/Product/GetAllProductQuery";
 export * from "../application/Product/GetAllProductQueryHandler";
+export * from "../application/Product/Category/GetAllCategoryProductQuery";
+export * from "../application/Product/Category/GetAllCategoryProductQueryHandler";
 export * from "../application/Education/GetAllTrainingQuery";
 export * from "../application/Education/GetAllTrainingQueryHandler";
 export * from "../application/Education/Categories/GetAllTrainingCategoriesQuery";

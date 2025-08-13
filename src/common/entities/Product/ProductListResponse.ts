@@ -22,6 +22,7 @@
   modificationDateTime: string;
   creationDateTimeShamsi: string;
   modificationDateTimeShamsi: string;
+  catalog_cover_image_url: string;
 }
 
   

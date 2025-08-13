@@ -15,8 +15,9 @@ const NewsAndArticlesPage = () => {
   const { data, error } = useGetAllNewsComment();
 
   const [newsComment, setNewsComment] = useState<NewsCommentsResponse[]>([]);
-
+console.log({data})
   useEffect(() => {
+    
     if (!data || data.length === 0) return;
     console.log({ data });
     setNewsComment(data);

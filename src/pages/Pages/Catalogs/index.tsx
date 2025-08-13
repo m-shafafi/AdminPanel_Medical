@@ -100,6 +100,7 @@ const CatalogPage: React.FC = () => {
    <CatalogCard
     key={item.id}
     pdfUrl={item.catalogURL}
+    coverPdfUrl={item.catalog_cover_image_url}
     title={getLocalizedValue(item, "name")}
     description={getLocalizedValue(item, "description") || "No description"}
   /> 

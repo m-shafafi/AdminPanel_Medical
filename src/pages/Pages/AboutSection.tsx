@@ -41,7 +41,7 @@ const AboutSection = () => {
                     alt="About 2"
                   />
                 </div>
-                <span className="about-experience position-absolute top-0 start-0 bg-primary text-white p-2 rounded">
+                <span className="about-experience position-absolute  start-0   bg-primary text-white p-2 rounded">
                   {t('about.yearsOfExperience')}
                 </span>
               </div>

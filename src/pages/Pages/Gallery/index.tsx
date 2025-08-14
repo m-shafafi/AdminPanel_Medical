@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
-import Navbar from "../../Components/Navbar";
 import Topbar from "../../Components/Topbar";
 import React from "react";
+import Navbar from "pages/Components/navbar/Navbar";
 
 interface BlogPost {
   image: string;
@@ -52,6 +52,7 @@ const GalleryPage = () => {
       <Header
        imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
         title={t("navigation.gallery")}
+        txtTitleBanner={t("navigation.gallery")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },

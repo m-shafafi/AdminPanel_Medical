@@ -16,8 +16,8 @@
   ,"about.yearsOfExperience":"خبرة 15 سنة"
   ,"contact.addressClinic":"عنوان عيادة زوبين للألم: طهران، شارع آزادي، تقاطع إسكندري، برج نجين آزادي، الطابق الرابع"
   ,"contact.addressCompany":"ادرس الشركة: طهران، شارع زراتشت الغربي، رقم ٦، الوحدة ٩٤"
- ,"contact.MobileTitle":"موبایل"
- ,"contact.EmailTitle":"ایمیل"
+ ,"contact.MobileTitle":"الهاتف المحمول"
+ ,"contact.EmailTitle":"بريد إلكتروني"
   ,"contact.CustomerName":"الاسم"
         ,"contact.locationTitle":" أين يمكنك أن تجدنا؟"
 ,"contact.CustomerEmail": "البريد الإلكتروني"
@@ -32,6 +32,8 @@
 "download.catalog":"تنزيل الكتالوج",
 "download.video":"تنزيل الویدیو",
 "video.message":"متصفحك لا يدعم تشغيل الفيديو.",
-"messages.noCatalog":"لا يوجد كتالوج."
+"messages.noCatalog":"لا يوجد كتالوج.",
+"Please wait, processing":"الرجاء الانتظار، جاري المعالجة",
+  "contact.SendMessage":"إرسال رسالة"
 
 }

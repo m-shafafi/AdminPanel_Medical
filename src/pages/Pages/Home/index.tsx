@@ -1,18 +1,9 @@
 import Topbar from '../../Components/Topbar';
-import Navbar from '../../Components/Navbar';
-import Footer from '../../Components/Footer';
-import Carousel from '../../Components/Carousel';
-import AboutSection from '../AboutSection';
-import TestimonialSection from '../TestimonialSection';
-import BackToTop from '../../Components/BackToTop';
-import Services from '../Services';
-import AppointmentForm from '../AppointmentForm';
-import TeamSection from '../TeamSection';
-import BlogSection from '../BlogSection';
+import Navbar from "pages/Components/navbar/Navbar";
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import Header from 'pages/Components/Header';
 import { useTranslation } from 'react-i18next';
+import MenuNavbar from 'pages/Components/navbar';
 
 
 

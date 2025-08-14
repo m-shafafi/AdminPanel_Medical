@@ -1,6 +1,6 @@
 
 import Topbar from "../Components/Topbar";
-import Navbar from "../Components/Navbar";
+import Navbar from "pages/Components/navbar/Navbar";
 import Header from "../Components/Header";
 import { useTranslation } from "react-i18next";
 import React from "react";
@@ -16,6 +16,7 @@ const PageNotFound = () => {
             imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
 
         title={t("navigation.pageNotFound")}
+        txtTitleBanner={t("navigation.pageNotFound")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },

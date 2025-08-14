@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
-import Navbar from "../../Components/Navbar";
+import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import useGetAllNewsComment from "hooks/useGetAllNewsComment";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
+import i18n from "i18n";
 
 
 const NewsAndArticlesPage = () => {
@@ -22,15 +23,41 @@ console.log({data})
     console.log({ data });
     setNewsComment(data);
   }, [data]);
+  const getLocalizedValueContentNews = (item:NewsCommentsResponse, field: "content") => {
+    switch (i18n.language) {
+      case "en-GB":
+        return item[`${field}_EN`];
+      case "ar-GB":
+        return item[`${field}_AR`];
+      case "fa-IR":
+      default:
+        return item[`${field}_FA`];
+    }
+  };
 
+
+  const getLocalizedValueTitleNews = (item:NewsCommentsResponse, field: "title") => {
+    switch (i18n.language) {
+      case "en-GB":
+        return item[`${field}_EN`];
+      case "ar-GB":
+        return item[`${field}_AR`];
+      case "fa-IR":
+      default:
+        return item[`${field}_FA`];
+    }
+  };
   return (
     
     <>
        <Topbar/>
      <Navbar/> 
-     <Header
-       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
+
+            <Header
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
         title={t("navigation.articles")}
+        
+       txtTitleBanner={t("navigation.articles")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
@@ -69,12 +96,12 @@ console.log({data})
                       {/* <a href={post.i} className="text-muted">
                         <span className="fa fa-comments text-primary"></span>{" "}
                         {post.comments} Comments
-                      </a> */}
+                      </a> */} 
                     </div>
                     <p  className="h4">
-                      {post.title}
+                      {getLocalizedValueTitleNews(post,"title")}
                     </p>
-                    <p className="my-4">{post.content}</p>
+                    <p className="my-4">{getLocalizedValueContentNews(post,"content")}</p>
                     <a
                       href={post.imageUrl}
                       className="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"

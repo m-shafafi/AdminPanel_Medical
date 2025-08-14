@@ -18,6 +18,7 @@
  ,"contact.addressCompany": "Company address: Tehran, West Zaratasht St., No. 6, Unit 94"
   ,"contact.MobileTitle":"Mobile"
   ,"contact.EmailTitle":"Email"
+    ,"contact.SendMessage":"ُSend message"
   ,"contact.addressTitle":"Address"
     ,"contact.locationTitle":"Where can you find us?"
     ,"contact.CustomerName":"ُName"
@@ -33,5 +34,6 @@
 ,"download.catalog":"Download catalog",
 "download.video":"Download video",
 "video.message":"Your browser does not support video playback.",
-"messages.noCatalog":"There is no catalog."
+"messages.noCatalog":"There is no catalog.",
+"Please wait, processing":"Please wait, processing"
 }

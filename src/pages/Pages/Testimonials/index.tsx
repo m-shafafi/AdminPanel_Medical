@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
-import Navbar from "../../Components/Navbar";
+import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import i18n from "../../../i18n";
 import React from "react";
@@ -17,6 +17,7 @@ const Testimonials = () => {
             imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
 
         title={t("navigation.testimonials")}
+        txtTitleBanner={t("navigation.testimonials")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },

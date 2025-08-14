@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router-dom";
-import LanguageSwitcher from "./LanguageSwitcher";
 import i18n from "i18n";
 import useGetAllTrainingCategories from "hooks/useGetAllTrainingCategories";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import useGetAllCategoryProduct from "hooks/useGetAllCategoryProduct";
-import { useLoading } from "./Loading/LoadingContext";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
@@ -26,7 +25,6 @@ const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => 
 const Navbar = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const { setLoading } = useLoading(); // use global loading
 
    // بررسی فعال بودن صفحه محصولات
   const isProductPage = location.pathname.startsWith("/products");
@@ -62,7 +60,6 @@ const closeNavbar = () => {
 };
 
 const handleNavClick = () => {
-  setLoading(true);
   closeNavbar();
 };
 

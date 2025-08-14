@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
-import Navbar from "../../Components/Navbar";
+import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import { useLocation } from "react-router-dom";
 import useGetAllProducts from "../../../hooks/useGetAllProduct";

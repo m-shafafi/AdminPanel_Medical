@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Topbar from "pages/Components/Topbar";
-import Navbar from "pages/Components/Navbar";
+import Navbar from "pages/Components/navbar/Navbar";
 import Header from "pages/Components/Header";
 import { useTranslation } from "react-i18next";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
@@ -43,7 +43,6 @@ const CatalogPage: React.FC = () => {
   const { data, error } = useGetAllProducts();
 
   useEffect(() => {
-    setLoading(true);
     if (data && data.length > 0) {
       setProducts(data);
       setLoading(false);
@@ -79,6 +78,7 @@ const CatalogPage: React.FC = () => {
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
         title={t("navigation.catalogs")}
+        txtTitleBanner={t("navigation.catalogs")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
@@ -89,7 +89,7 @@ const CatalogPage: React.FC = () => {
 
 
         {loading ? (
-                <LoadingModal isOpen={loading} message="Please wait, processing..." />
+                <LoadingModal isOpen={loading} message={t("Please wait, processing")} />
 
         ) : products.length === 0 ? (
           <p className="no-items">{t("messages.noCatalog")}</p>

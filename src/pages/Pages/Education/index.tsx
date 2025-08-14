@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import Header from "../../Components/Header";
-import Navbar from "../../Components/Navbar";
 import Topbar from "../../Components/Topbar";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -10,7 +9,7 @@ import useGetAllTraining from "hooks/useGetAllTraining";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
 import VideoPlayer from "pages/Components/VideoPlayer";
 import LoadingModal from "pages/Components/Loading/Loading";
-import { useLoading } from "pages/Components/Loading/LoadingContext";
+import Navbar from "pages/Components/navbar/Navbar";
 
 
 const Education = () => {
@@ -19,8 +18,8 @@ const Education = () => {
   const location = useLocation();
 
   const state = location.state as TrainingCategoriesListResponse | null;
-  const { loading, setLoading } = useLoading();
-console.log({loading})
+  const [loading, setLoading] = useState(true);
+
   
 
    if (!state?.id) {
@@ -32,8 +31,6 @@ console.log({loading})
   const [training, setTrainings] = useState<TrainingListResponse[]>([]);
 
 useEffect(() => {
-  setLoading(true);
-
   if (!data || data.length === 0) {
     setLoading(false);
     return;
@@ -59,6 +56,7 @@ console.log({training})
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
         title={t("navigation.education")}
+        txtTitleBanner={t("navigation.education")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },

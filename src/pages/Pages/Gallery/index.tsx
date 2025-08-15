@@ -50,7 +50,7 @@ const GalleryPage = () => {
       <Topbar />
       <Navbar />
       <Header
-       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
+       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
         title={t("navigation.gallery")}
         txtTitleBanner={t("navigation.gallery")}
         menu={[

@@ -23,6 +23,8 @@ type Props = {
   menu: MenuItem[] | null;
   imgBanner: string;
   textAlignTxt?: TextAlign;
+  height?: string ;
+  width?: string;
 };
 
 const Header = (props: Props) => {
@@ -34,7 +36,7 @@ const Header = (props: Props) => {
           src={props.imgBanner}
           alt="Banner"
           className="w-100 img-fluid"
-          style={{ maxHeight: "400px", objectFit: "cover" }}
+          style={{ maxHeight: props.height??"400px", objectFit: "cover" ,width:props.width}}
         />
 
         {/* متن روی بنر */}

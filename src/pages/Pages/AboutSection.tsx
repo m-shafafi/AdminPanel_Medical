@@ -15,7 +15,7 @@ const AboutSection = () => {
       <Topbar />
       <Navbar />
       <Header
-       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
+       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
         title={t("navigation.about")}
         txtTitleBanner={t("navigation.about")}
         menu={[

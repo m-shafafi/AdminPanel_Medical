@@ -13,7 +13,7 @@ const PageNotFound = () => {
       <Topbar />
       <Navbar />
       <Header
-            imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
+            imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
 
         title={t("navigation.pageNotFound")}
         txtTitleBanner={t("navigation.pageNotFound")}

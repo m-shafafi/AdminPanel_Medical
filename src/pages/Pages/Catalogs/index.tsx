@@ -76,7 +76,7 @@ const CatalogPage: React.FC = () => {
       <Topbar />
       <Navbar />
       <Header
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
         title={t("navigation.catalogs")}
         txtTitleBanner={t("navigation.catalogs")}
         menu={[

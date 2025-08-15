@@ -54,7 +54,7 @@ console.log({training})
       <Topbar />
       <Navbar />
       <Header
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
         title={t("navigation.education")}
         txtTitleBanner={t("navigation.education")}
         menu={[
@@ -68,7 +68,7 @@ console.log({training})
 
         ) : (
       <div className="container-fluid blog py-5">
-        <div className="container py-5">
+        <div className="container">
           <div className="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
             <div className="sub-style">
               <h4 className="sub-title px-3 mb-0">{t("navigation.education")}</h4>
@@ -78,18 +78,18 @@ console.log({training})
 
           <div className="row g-4 justify-content-center">
             {training.map((post, index) => (
-              <div
+              <VideoPlayer src={post.thumbnailUrl} />
+              /* <div
                 className="col-12 col-sm-6 col-lg-4 wow fadeInUp"
                 data-wow-delay={`${0.1 * (index + 1)}s`}
                 key={index}
               >
-                <div className="blog-item rounded h-100 d-flex flex-column">
-                  <div className="blog-img ratio ratio-16x9">
-                    <VideoPlayer src={post.thumbnailUrl} />
-                  </div>
+                <div className="blog-item rounded h-100 d-flex flex-column"> 
+                   <div className="blog-img ratio ratio-16x9"> 
+                    
+                 </div> 
 
-                  {/* اگر می‌خوای توضیحات هم باشه، این بخش رو آنکامنت کن */}
-                  {/* <div className="blog-content p-4 flex-grow-1">
+                   <div className="blog-content p-4 flex-grow-1">
                     <a href={post.thumbnailUrl} className="h5 d-block mb-2">
                       {post.title}
                     </a>
@@ -100,9 +100,10 @@ console.log({training})
                     >
                       {t("download.video")}
                     </a>
-                  </div> */}
+                  </div> 
+                  </div>
                 </div>
-              </div>
+              </div>*/
             ))}
 
             {training.length === 0 && (

@@ -21,7 +21,7 @@ import MenuNavbar from 'pages/Components/navbar';
       txtTitleBanner={t("txtTitleBanner")}
       txtDescBanner={t("txtDescBanner")}
        menu={[]}
-      imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.jpg'
+      imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
         title={""}
   
       />                                                                                    

@@ -58,7 +58,7 @@ const Products = () => {
       <Topbar />
       <Navbar />
       <Header
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.jpg"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
         title={t("navigation.products")}
         
        txtTitleBanner={t("navigation.products")}

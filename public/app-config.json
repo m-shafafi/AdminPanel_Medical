@@ -1,8 +1,8 @@
 
 {
   "serviceUrls": {
-    "productsApiBaseUrl": "/productsApi/",
-    "newsApiBaseUrl": "/newsApi/",
-    "educationApiBaseUrl": "/educationApi/"
+    "productsApiBaseUrl": "http://91.107.182.124:10000",
+    "newsApiBaseUrl": "http://91.107.182.124:10002",
+    "educationApiBaseUrl": "http://91.107.182.124:10003"
   }
 }

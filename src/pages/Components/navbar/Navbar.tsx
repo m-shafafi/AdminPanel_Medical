@@ -8,7 +8,6 @@ import CategoryProductListResponse from "common/entities/Product/CategoryProduct
 import useGetAllCategoryProduct from "hooks/useGetAllCategoryProduct";
 import LanguageSwitcher from "../LanguageSwitcher";
 
-
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
   switch (i18n.language) {
     case "en-GB":
@@ -21,59 +20,46 @@ const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => 
   }
 };
 
-
 const Navbar = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
-   // بررسی فعال بودن صفحه محصولات
   const isProductPage = location.pathname.startsWith("/products");
-    // بررسی RTL بودن زبان
   const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
 
-  // دریافت دسته‌بندی‌ها
-  const { data: trainingData, error:errorTraning, isLoading: isLoadingTraining} = useGetAllTrainingCategories();
+  const { data: trainingData } = useGetAllTrainingCategories();
   const [trainingCategories, setTrainingCategories] = useState<TrainingCategoriesListResponse[]>([]);
 
-  // دریافت دسته‌بندی‌ محصولات
-  const { data: categoryProduct, error:errorProductCategory, isLoading:isLoadingProductCategory } = useGetAllCategoryProduct();
+  const { data: categoryProduct } = useGetAllCategoryProduct();
   const [productCategories, setProductCategories] = useState<CategoryProductListResponse[]>([]);
+
   useEffect(() => {
     if (trainingData?.length) setTrainingCategories(trainingData);
     if (categoryProduct?.length) setProductCategories(categoryProduct);
   }, [trainingData, categoryProduct]);
 
+  const closeNavbar = () => {
+    const navbarCollapse = document.getElementById("navbarCollapse");
+    if (navbarCollapse?.classList.contains("show")) {
+      navbarCollapse.classList.remove("show");
+    }
+  };
 
-const closeNavbar = () => {
-  // Close mobile menu
-  const navbarCollapse = document.getElementById("navbarCollapse");
-  if (navbarCollapse?.classList.contains("active")) {
-    (window as any).bootstrap?.Collapse
-      ? new (window as any).bootstrap.Collapse(navbarCollapse, { toggle: true })
-      : navbarCollapse.classList.remove("active");
-  }
-
-  // Close any open dropdown
-  document.querySelectorAll(".dropdown-menu.show").forEach((dropdown) => {
-    dropdown.classList.remove("active");
-  });
-};
-
-const handleNavClick = () => {
-  closeNavbar();
-};
+  const handleNavClick = () => {
+    closeNavbar();
+  };
 
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? "nav-item nav-link active" : "nav-item nav-link";
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white px-4 px-lg-5 py-3 py-lg-0">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white px-3 px-lg-5 py-2 py-lg-3 shadow-sm sticky-top">
       {/* لوگو */}
       <NavLink to="/" className="navbar-brand p-0">
         <img
-          src="assets/img/Logo.png"
+          src="https://zhubinshahyad.com/media/Files/img/Logo.png"
           alt="Logo"
-          style={{ width: "5rem", height: "5rem", objectFit: "contain" }}
+          style={{ width: "4rem", height: "4rem", objectFit: "contain" }}
         />
       </NavLink>
 
@@ -86,6 +72,9 @@ const handleNavClick = () => {
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
         <span className="fa fa-bars" />
       </button>
@@ -93,8 +82,12 @@ const handleNavClick = () => {
       {/* لینک‌ها */}
       <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">
         <div className="navbar-nav mx-auto py-0">
-          <NavLink onClick={handleNavClick} to="/" end className={getNavLinkClass}>{t("navigation.home")}</NavLink>
-          <NavLink onClick={handleNavClick} to="/about" className={getNavLinkClass}>{t("navigation.about")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/" end className={getNavLinkClass}>
+            {t("navigation.home")}
+          </NavLink>
+          <NavLink onClick={handleNavClick} to="/about" className={getNavLinkClass}>
+            {t("navigation.about")}
+          </NavLink>
 
           {/* محصولات */}
           <div className="nav-item dropdown">
@@ -105,7 +98,7 @@ const handleNavClick = () => {
             >
               {t("navigation.products")}
             </span>
-            <div className={`dropdown-menu p-0 m-0 ${isRtl ? "text-end dropdown-menu-end" : "text-start"}`}>
+            <div className={`dropdown-menu w-100 w-lg-auto ${isRtl ? "text-end dropdown-menu-end" : ""}`}>
               {productCategories.map((val) => (
                 <NavLink
                   key={val.id}
@@ -125,9 +118,7 @@ const handleNavClick = () => {
             <span className="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">
               {t("navigation.education")}
             </span>
-            <div className={`dropdown-menu p-0 m-0 ${isRtl ? "text-end dropdown-menu-end" : "text-start"}`}>
-              {/* {isLoadingTraining && <span className="dropdown-item text-muted">{t("loading")}</span>}
-              {errorTraning && <span className="dropdown-item text-danger">{t("error.loading")}</span>} */}
+            <div className={`dropdown-menu w-100 w-lg-auto ${isRtl ? "text-end dropdown-menu-end" : ""}`}>
               {trainingCategories.map((value) => (
                 <NavLink
                   key={value.id}
@@ -137,17 +128,26 @@ const handleNavClick = () => {
                   onClick={handleNavClick}
                 >
                   {value.name}
-                  
                 </NavLink>
               ))}
             </div>
           </div>
 
-          <NavLink onClick={ handleNavClick} to="/catalogs" className={getNavLinkClass}>{t("navigation.catalogs")}</NavLink>
-          <NavLink onClick={handleNavClick } to="/gallery" className={getNavLinkClass}>{t("navigation.gallery")}</NavLink>
-          <NavLink onClick={handleNavClick} to="/NewsAndArticlesPage" className={getNavLinkClass}>{t("navigation.articles")}</NavLink>
-          <NavLink onClick={handleNavClick} to="/testimonials" className={getNavLinkClass}>{t("navigation.testimonials")}</NavLink>
-          <NavLink onClick={handleNavClick} to="/contact" className={getNavLinkClass}>{t("navigation.contact")}</NavLink>
+          <NavLink onClick={handleNavClick} to="/catalogs" className={getNavLinkClass}>
+            {t("navigation.catalogs")}
+          </NavLink>
+          <NavLink onClick={handleNavClick} to="/gallery" className={getNavLinkClass}>
+            {t("navigation.gallery")}
+          </NavLink>
+          <NavLink onClick={handleNavClick} to="/NewsAndArticlesPage" className={getNavLinkClass}>
+            {t("navigation.articles")}
+          </NavLink>
+          <NavLink onClick={handleNavClick} to="/testimonials" className={getNavLinkClass}>
+            {t("navigation.testimonials")}
+          </NavLink>
+          <NavLink onClick={handleNavClick} to="/contact" className={getNavLinkClass}>
+            {t("navigation.contact")}
+          </NavLink>
         </div>
       </div>
     </nav>

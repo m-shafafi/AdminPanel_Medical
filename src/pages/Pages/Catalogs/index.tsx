@@ -8,11 +8,8 @@ import useGetAllProducts from "../../../hooks/useGetAllProduct";
 import { useLocation } from "react-router-dom";
 import i18n from "i18n";
 import CatalogCard from "pages/Components/Catalog/CatalogCard";
-import "./CatalogPage.css"; // styles for better design
-import DownloadButton from "pages/Components/DownloadButton";
-import { Document, Page } from "react-pdf";
+import "./CatalogPage.css";
 import LoadingModal from "pages/Components/Loading/Loading";
-
 
 export interface CategoryItem {
   Id: number;
@@ -32,24 +29,22 @@ export interface CategoryItem {
   ThumbnailUrl: string;
 }
 
-const CatalogPage: React.FC = () => {
+const CatalogPage = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const state = location.state as CategoryItem;
 
   const [products, setProducts] = useState<ProductListResponse[]>([]);
   const [loading, setLoading] = useState(true);
-  const [numPages, setNumPages] = useState<number | null>(null);
   const { data, error } = useGetAllProducts();
 
   useEffect(() => {
     if (data && data.length > 0) {
       setProducts(data);
-      setLoading(false);
     } else if (error) {
       console.error("Error loading products:", error);
-      setLoading(false);
     }
+    setLoading(false);
   }, [data, error]);
 
   const getLocalizedValue = (
@@ -67,10 +62,6 @@ const CatalogPage: React.FC = () => {
     }
   };
 
-    const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
-  };
-
   return (
     <>
       <Topbar />
@@ -86,26 +77,33 @@ const CatalogPage: React.FC = () => {
       />
 
       <div className="catalog-container">
+        {/* Loader */}
+        {loading && (
+          <LoadingModal
+            isOpen={true}
+            message={t("Please wait, processing")}
+          />
+        )}
 
-
-        {loading ? (
-                <LoadingModal isOpen={loading} message={t("Please wait, processing")} />
-
-        ) : products.length === 0 ? (
+        {!loading && products.length === 0 && (
           <p className="no-items">{t("messages.noCatalog")}</p>
-        ) : (
+        )}
+
+        {!loading && products.length > 0 && (
           <div className="catalog-grid">
-        {products.map((item) => (
-    item.catalog_cover_image_url ? (
-      <CatalogCard
-        key={item.id}
-        pdfUrl={item.catalogURL}
-        coverPdfUrl={item.catalog_cover_image_url}
-        title={getLocalizedValue(item, "name")}
-        description={getLocalizedValue(item, "description") || "No description"}
-      />
-    ) : null
-  ))}
+            {products.map((item) =>
+              item.catalog_cover_image_url ? (
+                <CatalogCard
+                  key={item.id}
+                  pdfUrl={item.catalogURL}
+                  coverPdfUrl={item.catalog_cover_image_url}
+                  title={getLocalizedValue(item, "name")}
+                  description={
+                    getLocalizedValue(item, "description") || "No description"
+                  }
+                />
+              ) : null
+            )}
           </div>
         )}
       </div>

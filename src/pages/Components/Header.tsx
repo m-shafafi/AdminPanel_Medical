@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type TextAlign =
   | "left"
@@ -23,59 +23,62 @@ type Props = {
   menu: MenuItem[] | null;
   imgBanner: string;
   textAlignTxt?: TextAlign;
-  height?: string ;
+  height?: string;
   width?: string;
 };
 
 const Header = (props: Props) => {
   return (
     <div className="container-fluid p-0">
-      {/* بخش تصویر بنر */}
       <div className="position-relative w-100">
         <img
           src={props.imgBanner}
           alt="Banner"
           className="w-100 img-fluid"
-          style={{ maxHeight: props.height??"400px", objectFit: "cover" ,width:props.width}}
+          style={{
+            minHeight: "200px",
+            maxHeight: props.height ?? "400px",
+            objectFit: "cover",
+            width: props.width ?? "100%",
+          }}
         />
 
-        {/* متن روی بنر */}
         {(props.txtTitleBanner || props.txtDescBanner) && (
           <div
-            className="position-absolute top-50 start-50 translate-middle text-white text-center p-3"
+            className="position-absolute top-50 start-50 translate-middle text-white text-center p-2 p-md-3"
             style={{
-              maxWidth: "900px",
+              maxWidth: "90%",
               textAlign: props.textAlignTxt,
               textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
             }}
           >
             {props.txtTitleBanner && (
               <>
-              <h3 className="display-5 mb-3">{props.txtTitleBanner}</h3>
+                <h3 className="fs-4 fs-md-2 fw-bold mb-2">
+                  {props.txtTitleBanner}
+                </h3>
                 {props.menu && (
-          <ol className="breadcrumb justify-content-center mb-0">
-            {props.menu.map((item, index) => (
-              <li key={index} className="breadcrumb-item">
-                <Link to={item.url} className="link-dark">
-                  {item.desc}
-                </Link>
-                {index < (props.menu?.length ?? 0) - 1 && (
-      <span className="mx-2 text-gray-400">/</span>
-    )}
-              </li>
-            ))}
-          </ol>
-        )}
-        </>
+                  <ol className="breadcrumb justify-content-center mb-2">
+                    {props.menu.map((item, index) => (
+                      <li key={index} className="breadcrumb-item">
+                        <Link to={item.url} className="link-light">
+                          {item.desc}
+                        </Link>
+                        {index < (props.menu?.length ?? 0) - 1 && (
+                          <span className="mx-2 text-gray-400">/</span>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </>
             )}
             {props.txtDescBanner && (
-              <h6 className="fw-light">{props.txtDescBanner}</h6>
+              <h6 className="fw-light fs-6">{props.txtDescBanner}</h6>
             )}
           </div>
         )}
       </div>
-
-
     </div>
   );
 };

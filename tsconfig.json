@@ -10,21 +10,37 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
+    "module": "ESNext",                 // 👈 اصلاح شد
+    "moduleResolution": "bundler",      // 👈 برای Vite + Tailwind v4 درست هست
+    "baseUrl": "./src",
     "paths": {
       "@Mediatr/*": ["./thirdtools/mediatr/*"],
       "@Fluentvalidator/*": ["./thirdtools/fluentvalidation/*"]
     },
-    "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */,
-    "emitDecoratorMetadata": true /* Enables experimental support for emitting type metadata for decorators. */,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx",                 // 👈 اصلاح شد
+    "types": ["vite/client"]            // 👈 اضافه شد
   },
-  "exclude": ["node_modules", "lib/**/*.js"],
-  "include": ["src", "test"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  // "exclude": ["node_modules", "lib/**/*.js"],
+  // "include": ["src", "test"],
+  // "references": [{ "path": "./tsconfig.node.json" }]
 }
+
+
+// {
+//   "compilerOptions": {
+//     "module": "ESNext",
+//     "moduleResolution": "bundler",
+//     "jsx": "react-jsx",
+//     "types": ["vite/client"],
+//     "skipLibCheck": true,
+//         "paths": {
+//       "@Mediatr/*": ["./thirdtools/mediatr/*"],
+//       "@Fluentvalidator/*": ["./thirdtools/fluentvalidation/*"]
+//     },
+//   }
+// }

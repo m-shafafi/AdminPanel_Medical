@@ -7,7 +7,6 @@ import useGetAllProducts from "../../../hooks/useGetAllProduct";
 import React, { useEffect, useState } from "react";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
 import i18n from "i18n";
-import DownloadButton from "pages/Components/DownloadButton";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 
 
@@ -21,12 +20,12 @@ const Products = () => {
 
   const [products, setProducts] = useState<ProductListResponse[]>([]);
 
-  useEffect(() => {
-    if (!data || data.length === 0) return;
-    console.log({ data });
-    const productsList = data.filter((p) => p.categoryId === state.id);
-    setProducts(productsList);
-  }, [data, state.id]);
+  // useEffect(() => {
+  //   if (!data || data.length === 0) return;
+  //   console.log({ data });
+  //   const productsList = data.filter((p) => p.categoryId === state.id);
+  //   setProducts(productsList);
+  // }, [data, state.id]);
 
   const getLocalizedValue = (
     product: ProductListResponse,
@@ -60,8 +59,8 @@ const Products = () => {
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
         title={t("navigation.products")}
-        
-       txtTitleBanner={t("navigation.products")}
+
+        txtTitleBanner={t("navigation.products")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
@@ -110,10 +109,10 @@ const Products = () => {
                         <p className="mb-0">
                           {getLocalizedValue(product, "description")}
                         </p>
-                                <div className="text-center mt-4">
-                    
-                        
-                      </div>
+                        <div className="text-center mt-4">
+
+
+                        </div>
                       </div>
                     </div>
                   </div>

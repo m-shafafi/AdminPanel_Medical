@@ -54,9 +54,9 @@ const Header = (props: Props) => {
           >
             {props.txtTitleBanner && (
               <>
-                <h3 className="fs-4 fs-md-2 fw-bold mb-2">
+                <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                   {props.txtTitleBanner}
-                </h3>
+                </h1>
                 {props.menu && (
                   <ol className="breadcrumb justify-content-center mb-2">
                     {props.menu.map((item, index) => (

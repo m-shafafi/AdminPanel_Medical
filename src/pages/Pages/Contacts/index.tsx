@@ -45,82 +45,15 @@ const Contact = () => {
                 Download Now
               </a>
             </p> */}
-            <form>
-              <div className="row g-3">
-                <div className="col-lg-12 col-xl-6">
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control bg-transparent border border-white "
-                      id="name"
-                      placeholder="Your Name"
-                    />
-                    <label htmlFor="name">{t('contact.CustomerName')}</label>
-                  </div>
-                </div>
-                <div className="col-lg-12 col-xl-6">
-                  <div className="form-floating">
-                    <input
-                      type="email"
-                      className="form-control bg-transparent border border-white"
-                      id="email"
-                      placeholder="Your Email"
-                    />
-                    <label htmlFor="email">{t('contact.CustomerEmail')}</label>
-                  </div>
-                </div>
-                <div className="col-lg-12 col-xl-6">
-                  <div className="form-floating">
-                    <input
-                      type="phone"
-                      className="form-control bg-transparent border border-white"
-                      id="phone"
-                      placeholder={t('contact.MobileTitle')}
-                      style={{ textAlign: isRTL ? "right" : "left" }}
-                    />
-                    <label htmlFor="phone">{t('contact.MobileTitle')}</label>
-                  </div>
-                </div>
-                <div className="col-lg-12 col-xl-6">
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control bg-transparent border border-white"
-                      id="project"
-                      placeholder={t('contact.CustomerProject')}
-                      style={{ textAlign: isRTL ? "right" : "left" }}
-                    />
-                    <label htmlFor="project">{t('contact.CustomerProject')}</label>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control bg-transparent border border-white"
-                      id="subject"
-                      placeholder={t('contact.CustomerSubject')}
-                      style={{ textAlign: isRTL ? "right" : "left" }}
-                    />
-                    <label htmlFor="subject">{t('contact.CustomerSubject')}</label>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="form-floating">
-                    <textarea
-                      className="form-control bg-transparent border border-white"
-                      placeholder="Leave a message here"
-                      id="message"
-                      style={{ height: '160px',textAlign: isRTL ? "right" : "left" }}
-                    ></textarea>
-                    <label htmlFor="message">{t('contact.CustomerMessage')}</label>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <button className="btn btn-light text-primary w-100 py-3">{t('contact.SendMessage')}</button>
-                </div>
-              </div>
-            </form>
+            <div className="rounded h-100">
+              <iframe
+                className="rounded w-100"
+                style={{ height: '500px' }}
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
           <div className="col-lg-2 col-xl-2 wow fadeInUp" data-wow-delay="0.5s">
             <div className="bg-transparent rounded">
@@ -176,15 +109,84 @@ const Contact = () => {
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
-            <div className="rounded h-100">
-              <iframe
-                className="rounded w-100"
-                style={{ height: '500px' }}
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387191.33750346623!2d-73.97968099999999!3d40.6974881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1694259649153!5m2!1sen!2sbd"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+             <form>
+              <div className="row g-3">
+                <div className="col-lg-12 col-xl-6">
+                  <div className="form-floating">
+                       <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="name">{t('contact.CustomerName')}</label>
+                    <input
+                      type="text"
+                      className="form-control bg-transparent border border-white "
+                      id="name"
+                      placeholder="Your Name"
+                    />
+                 
+                  </div>
+                </div>
+                <div className="col-lg-12 col-xl-6">
+                  <div className="form-floating">
+                    <input
+                      type="email"
+                      className="form-control bg-transparent border border-white"
+                      id="email"
+                      placeholder="Your Email"
+                    />
+                       <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="email">{t('contact.CustomerEmail')}</label>
+                  </div>
+                </div>
+                <div className="col-lg-12 col-xl-6">
+                  <div className="form-floating">
+                    <input
+                      type="phone"
+                      className="form-control bg-transparent border border-white"
+                      id="phone"
+                      placeholder={t('contact.MobileTitle')}
+                      style={{ textAlign: isRTL ? "right" : "left" }}
+                    />
+                        <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="phone">{t('contact.MobileTitle')}</label>
+                  </div>
+                </div>
+                <div className="col-lg-12 col-xl-6">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control bg-transparent border border-white"
+                      id="project"
+                      placeholder={t('contact.CustomerProject')}
+                      style={{ textAlign: isRTL ? "right" : "left" }}
+                    />
+                          <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="project">{t('contact.CustomerProject')}</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control bg-transparent border border-white"
+                      id="subject"
+                      placeholder={t('contact.CustomerSubject')}
+                      style={{ textAlign: isRTL ? "right" : "left" }}
+                    />
+                          <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="subject">{t('contact.CustomerSubject')}</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <textarea
+                      className="form-control bg-transparent border border-white"
+                      placeholder="Leave a message here"
+                      id="message"
+                      style={{ height: '160px',textAlign: isRTL ? "right" : "left" }}
+                    ></textarea>
+                          <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="message">{t('contact.CustomerMessage')}</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <button className="btn btn-light text-primary w-100 py-3">{t('contact.SendMessage')}</button>
+                </div>
+              </div>
+            </form>
+           
           </div>
         </div>
       </div>

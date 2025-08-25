@@ -79,31 +79,7 @@ console.log({training})
           <div className="row g-4 justify-content-center">
             {training.map((post, index) => (
               <VideoPlayer src={post.thumbnailUrl} />
-              /* <div
-                className="col-12 col-sm-6 col-lg-4 wow fadeInUp"
-                data-wow-delay={`${0.1 * (index + 1)}s`}
-                key={index}
-              >
-                <div className="blog-item rounded h-100 d-flex flex-column"> 
-                   <div className="blog-img ratio ratio-16x9"> 
-                    
-                 </div> 
-
-                   <div className="blog-content p-4 flex-grow-1">
-                    <a href={post.thumbnailUrl} className="h5 d-block mb-2">
-                      {post.title}
-                    </a>
-                    <p className="mb-4 text-truncate">{post.description}</p>
-                    <a
-                      href={post.thumbnailUrl}
-                      className="btn btn-primary rounded-pill text-white py-2 px-4 mt-auto"
-                    >
-                      {t("download.video")}
-                    </a>
-                  </div> 
-                  </div>
-                </div>
-              </div>*/
+             
             ))}
 
             {training.length === 0 && (

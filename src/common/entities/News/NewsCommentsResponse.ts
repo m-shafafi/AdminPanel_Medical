@@ -10,7 +10,7 @@ export default interface NewsCommentsResponse {
   content_EN: string | null; // اگر ممکنه خالی باشه
   title_EN: string;
   Summary_EN: string;
-  imageUrl: string;
+  imageURL: string;
   creationDateTime: string;
   modificationDateTime: string;
 

@@ -20,12 +20,12 @@ const Products = () => {
 
   const [products, setProducts] = useState<ProductListResponse[]>([]);
 
-  // useEffect(() => {
-  //   if (!data || data.length === 0) return;
-  //   console.log({ data });
-  //   const productsList = data.filter((p) => p.categoryId === state.id);
-  //   setProducts(productsList);
-  // }, [data, state.id]);
+  useEffect(() => {
+    if (!data || data.length === 0) return;
+    console.log({ data });
+    const productsList = data.filter((p) => p.categoryId === state.id);
+    setProducts(productsList);
+  }, [data, state.id]);
 
   const getLocalizedValue = (
     product: ProductListResponse,
@@ -42,6 +42,7 @@ const Products = () => {
     }
   };
   const getLocalizedValueCategury = (item: CategoryProductListResponse, field: "name") => {
+    console.log({item})
     switch (i18n.language) {
       case "en-GB":
         return item[`${field}_EN`];

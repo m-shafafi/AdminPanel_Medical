@@ -11,7 +11,7 @@ interface SocialMediaLink {
   href: string;
 }
 
-const Footer: React.FC = () => {
+const Footer= () => {
   const quickLinks: FooterLink[] = [
     { text: 'About Us', icon: 'fas fa-angle-right', href: '#' },
     { text: 'Contact Us', icon: 'fas fa-angle-right', href: '#' },

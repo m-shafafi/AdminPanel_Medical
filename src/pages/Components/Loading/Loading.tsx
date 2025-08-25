@@ -6,14 +6,14 @@ interface LoadingModalProps {
   message?: string;
 }
 
-const LoadingModal: FC<LoadingModalProps> = ({ isOpen, message = "Loading..." }) => {
-  if (!isOpen) return null;
+const LoadingModal = (props: LoadingModalProps) => {
+  if (!props.isOpen) return null;
 
   return (
     <div className="loading-modal-overlay">
       <div className="loading-modal">
         <div className="spinner"></div>
-        <p>{message}</p>
+        <p>{props.message}</p>
       </div>
     </div>
   );

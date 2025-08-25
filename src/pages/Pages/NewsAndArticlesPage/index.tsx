@@ -16,7 +16,7 @@ const NewsAndArticlesPage = () => {
   const { data, error } = useGetAllNewsComment();
 
   const [newsComment, setNewsComment] = useState<NewsCommentsResponse[]>([]);
-console.log({data})
+console.log({newsComment})
   useEffect(() => {
     
     if (!data || data.length === 0) return;
@@ -98,12 +98,14 @@ console.log({data})
                         {post.comments} Comments
                       </a> */} 
                     </div>
+                         <img src={post.imageURL} className="h-48 w-96 object-fill " style={{ width: "100%", height: "20rem" }}></img>
+
                     <p  className="h4">
                       {getLocalizedValueTitleNews(post,"title")}
                     </p>
                     <p className="my-4">{getLocalizedValueContentNews(post,"content")}</p>
                     <a
-                      href={post.imageUrl}
+                      href={post.imageURL}
                       className="btn btn-primary rounded-pill text-white py-2 px-4 mb-1"
                     >
           {t('button.discoverMore')}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import DownloadButton from "./Button/DownloadButton";
 
 interface VideoPlayerProps {
   src: string;
@@ -18,21 +19,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props:VideoPlayerProps) => {
         preload="metadata"
       />
       <div style={{ marginTop: 15 }}>
-        <a
-          href={props.src}
-          download
-          style={{
-            padding: "10px 25px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            borderRadius: 5,
-            textDecoration: "none",
-            fontWeight: "bold",
-            display: "inline-block",
-          }}
-        >
-{t("download.video")}
-        </a>
+  
+                <DownloadButton hrefLink={props.src} downloadLink={props.src} text={t("download.video")} />
+
+        
       </div>
     </div>
   );

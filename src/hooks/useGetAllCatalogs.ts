@@ -6,19 +6,32 @@ import ms from "ms";
 import GetAllProductQuery from "business/application/Product/GetAllProductQuery";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import GetAllCategoryProductQuery from "business/application/Product/Category/GetAllCategoryProductQuery";
+import { useEffect } from "react";
 
 
 const mediator = new Mediator();
 
  const useGetAllCatalogs=()=> {
- return  useQuery({
+  const query =  useQuery({
         queryKey: ['GetAllCatalog'],
         queryFn: () => mediator.send<CategoryProductListResponse[]>(new GetAllCategoryProductQuery()),
         staleTime: ms('30m'),
-        onSuccess:(data)=> {  console.log("ddd" ,data)  },
-        onError: ( variables ) => {console.log("hooks error" ,variables)   },
         retry: false
     });
+
+useEffect(() => {
+    if (query.isSuccess) {
+      console.log("ddd", query.data);
+    }
+  }, [query.isSuccess, query.data]);
+
+useEffect(() => {
+    if (query.isError) {
+      console.log("hooks error", query.error);
+    }
+  }, [query.isError, query.error]);
+
+  return query;
 
 }
 export default useGetAllCatalogs;

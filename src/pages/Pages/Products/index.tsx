@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
 import i18n from "i18n";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
-import ProductsSection from "./ProductsSection";
+import GenericSection from "../../Components/Generic/GenericSection";
 
 
 
@@ -51,8 +51,6 @@ const Products = () => {
       <Navbar />
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
-        title={t("navigation.products")}
-
         txtTitleBanner={t("navigation.products")}
         menu={[
           { url: "/", desc: t("navigation.home") },
@@ -75,7 +73,7 @@ const Products = () => {
             </div>
           </div>
 
-          <ProductsSection products={products} />
+          <GenericSection items={products} nameField="name" descriptionField="description" />
 
 
         </div>

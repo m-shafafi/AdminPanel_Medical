@@ -1,16 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
-
-type TextAlign =
-  | "left"
-  | "right"
-  | "center"
-  | "justify"
-  | "start"
-  | "end"
-  | "initial"
-  | "inherit";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 type MenuItem = {
   url: string;
@@ -18,71 +9,75 @@ type MenuItem = {
 };
 
 type Props = {
-  title: string;
-  txtTitleBanner?: string | null;
-  txtDescBanner?: string | null;
-  menu: MenuItem[] | null;
+  txtTitleBanner?: string;
+  txtDescBanner?: string;
+  menu?: MenuItem[];
   imgBanner: string;
-  textAlignTxt?: TextAlign;
+  textAlignTxt?: "left" | "center" | "right";
   height?: string;
-  width?: string;
 };
 
-
 const Header = (props: Props) => {
-  console.log((props.menu?.length ?? 0) - 1)
   return (
-    <div className="container-fluid p-0">
-      <div className="position-relative w-100">
-        <img
-          src={props.imgBanner}
-          alt="Banner"
-          className="w-100 img-fluid"
-          style={{
-            minHeight: "200px",
-            maxHeight: props.height ?? "400px",
-            objectFit: "cover",
-            width: props.width ?? "100%",
-          }}
-        />
+    <Box className="!relative !w-full" sx={{ minHeight: props.height ?? "300px" }}>
+      {/* تصویر */}
+      <img
+        src={props.imgBanner}
+        alt="Banner"
+        className="!w-full !h-full !object-cover"
+        style={{ maxHeight: props.height ?? "500px" }}
+      />
 
-        {(props.txtTitleBanner || props.txtDescBanner) && (
-          <div
-            className="position-absolute top-50 start-50 translate-middle text-white text-center p-2 p-md-3"
-            style={{
-              maxWidth: "90%",
-              textAlign: props.textAlignTxt,
-              textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
-            }}
-          >
-            {props.txtTitleBanner && (
-              <>
-                <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                  {props.txtTitleBanner}
-                </h1>
-                {props.menu && (
-                  <ol className="breadcrumb justify-content-center mb-2">
-                    {props.menu.map((item, index) => (
-                      <li key={index} className="breadcrumb-item">
-                        <Link to={item.url} className="!font-medium !text-blue-900 !dark:text-blue-900 !hover:underline">
-                          {item.desc}
-                        </Link>
-                        {index !== (props.menu?.length ?? 0) - 1 && (
-                          <span className="mx-2 text-gray-400">/</span>
-                        )}
-                      </li>
-                    ))}
-                  </ol>
-                )}
-              </>
-            )}
-            {props.txtDescBanner && (
-              <h6 className="fw-light fs-6">{props.txtDescBanner}</h6>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+      {/* overlay نیمه شفاف */}
+      <Box
+        className="absolute top-0 left-0 w-full h-full"
+        sx={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+      />
+
+      {/* متن روی تصویر */}
+      {(props.txtTitleBanner || props.txtDescBanner) && (
+        <Box
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 text-white"
+          sx={{ maxWidth: "90%", textAlign: props.textAlignTxt ?? "center" }}
+        >
+          {/* عنوان */}
+          {props.txtTitleBanner && (
+            <Typography
+              variant="h2"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4"
+            >
+              {props.txtTitleBanner}
+            </Typography>
+          )}
+
+          {/* Breadcrumb */}
+          {props.menu && (
+            <Box className="flex flex-wrap justify-center md:justify-start mb-2">
+              {props.menu.map((item, index) => (
+                <Box
+                  key={index}
+                  className="flex items-center text-white hover:text-blue-400"
+                >
+                  <Link to={item.url} className="hover:underline font-medium">
+                    {item.desc}
+                  </Link>
+                  {index !== (props.menu?.length ?? 0) - 1 && (
+                    <span className="mx-2 text-gray-300">/</span>
+                  )}
+                </Box>
+              ))}
+            </Box>
+          )}
+
+          {/* توضیح */}
+          {props.txtDescBanner && (
+            <Typography variant="body1" className="text-center md:text-left">
+              {props.txtDescBanner}
+            </Typography>
+          )}
+        </Box>
+      )}
+    </Box>
   );
 };
 

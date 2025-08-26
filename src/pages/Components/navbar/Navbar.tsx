@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import i18n from "i18n";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
 import useGetAllTrainingCategories from "hooks/useGetAllTrainingCategories";
 import useGetAllCategoryProduct from "hooks/useGetAllCategoryProduct";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
@@ -19,48 +19,37 @@ import LanguageSwitcher from "../LanguageSwitcher";
 
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
   switch (i18n.language) {
-    case "en-GB":
-      return item[`${field}_EN`];
-    case "ar-GB":
-      return item[`${field}_AR`];
-    case "fa-IR":
-    default:
-      return item[`${field}_FA`];
+    case "en-GB": return item[`${field}_EN`];
+    case "ar-GB": return item[`${field}_AR`];
+    default: return item[`${field}_FA`];
   }
 };
 
 const Navbar = () => {
   const { t } = useTranslation();
-  const location = useLocation();
   const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
-  console.log({ isRtl })
+
   const { data: trainingData } = useGetAllTrainingCategories();
   const [trainingCategories, setTrainingCategories] = useState<TrainingCategoriesListResponse[]>([]);
-
   const { data: categoryProduct } = useGetAllCategoryProduct();
   const [productCategories, setProductCategories] = useState<CategoryProductListResponse[]>([]);
 
   useEffect(() => {
-    console.log({ trainingData })
-    console.log({ categoryProduct })
-    if ((trainingData as TrainingCategoriesListResponse[])?.length) setTrainingCategories(trainingData as TrainingCategoriesListResponse[]);
-    if ((categoryProduct as CategoryProductListResponse[])?.length) setProductCategories(categoryProduct as CategoryProductListResponse[]);
+    if (trainingData?.length) setTrainingCategories(trainingData as TrainingCategoriesListResponse[]);
+    if (categoryProduct?.length) setProductCategories(categoryProduct as CategoryProductListResponse[]);
   }, [trainingData, categoryProduct]);
 
-  const [anchorElProducts, setAnchorElProducts] = useState<null | HTMLElement>(null);
-  const [anchorElEducation, setAnchorElEducation] = useState<null | HTMLElement>(null);
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(null);
+  const [anchorProducts, setAnchorProducts] = useState<null | HTMLElement>(null);
+  const [anchorEducation, setAnchorEducation] = useState<null | HTMLElement>(null);
+  const [mobileAnchor, setMobileAnchor] = useState<null | HTMLElement>(null);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileEducationOpen, setMobileEducationOpen] = useState(false);
 
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, type: "products" | "education") => {
-    if (type === "products") setAnchorElProducts(event.currentTarget);
-    if (type === "education") setAnchorElEducation(event.currentTarget);
+  const handleOpen = (event: React.MouseEvent<HTMLElement>, type: "products" | "education") => {
+    if (type === "products") setAnchorProducts(event.currentTarget);
+    if (type === "education") setAnchorEducation(event.currentTarget);
   };
-
-  const handleMenuClose = () => {
-    setAnchorElProducts(null);
-    setAnchorElEducation(null);
-    setMobileMenuAnchor(null);
-  };
+  const handleClose = () => { setAnchorProducts(null); setAnchorEducation(null); setMobileAnchor(null); };
 
   const navLinks = [
     { label: t("navigation.home"), to: "/" },
@@ -72,119 +61,77 @@ const Navbar = () => {
   ];
 
   return (
-    <AppBar position="sticky" color="default" elevation={3}>
+    <AppBar position="sticky" elevation={6} sx={{ backgroundColor: "white", borderRadius: 2, px: { xs: 2, md: 4 }, py: 1, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* Logo */}
         <NavLink to="/">
-          <img
-            src="https://zhubinshahyad.com/media/Files/img/Logo.png"
-            alt="Logo"
-            style={{ width: 64, height: 64, objectFit: "contain" }}
-          />
+          <img src="https://zhubinshahyad.com/media/Files/img/Logo.png" alt="Logo" style={{ width: 72, height: 72, objectFit: "contain" }} />
         </NavLink>
 
         {/* Desktop Menu */}
-        <Box sx={{
-          display: "block",                // مثل flex
-          flexDirection: "row-reverse",   // مثل flex-row-reverse
-          textAlign: "right",             // مثل text-right
-          gap: 2,                         // فاصله بین آیتم‌ها (مثل gap-4)
-        }}>
-          {navLinks.map((link) => (
-            <Button
-              key={link.to}
-              component={NavLink}
-              to={link.to}
-              sx={{ color: "text.primary" }}
-            >
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", flexDirection: isRtl ? "row-reverse" : "row" }}>
+          {navLinks.map(link => (
+            <Button key={link.to} component={NavLink} to={link.to}
+              sx={{ color: "text.primary", fontWeight: 500, textTransform: "none", transition: "all 0.3s", "&:hover": { color: "primary.main", transform: "scale(1.05)" } }}>
               {link.label}
             </Button>
           ))}
 
-          {/* Products Dropdown */}
-          <Button
-            onClick={(e) => handleMenuOpen(e, "products")}
-            sx={{ color: "text.primary" }}
-          >
-            {t("navigation.products")}
-          </Button>
-          <Menu
-            anchorEl={anchorElProducts}
-            open={Boolean(anchorElProducts)}
-            onClose={handleMenuClose}
+          <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "products")}>{t("navigation.products")}</Button>
+          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose}
+            PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
             anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}
-          >
-            {productCategories.map((val) => (
-              <MenuItem
-                key={val.id}
-                component={NavLink}
-                to="/products"
-                state={val}
-                onClick={handleMenuClose}
-              >
-                {getLocalizedValue(val, "name")}
+            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}>
+            {productCategories.map(item => (
+              <MenuItem key={item.id} component={NavLink} to="/products" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
+                {getLocalizedValue(item, "name")}
               </MenuItem>
             ))}
           </Menu>
 
-          {/* Education Dropdown */}
-          <Button
-            onClick={(e) => handleMenuOpen(e, "education")}
-            sx={{ color: "text.primary" }}
-          >
-            {t("navigation.education")}
-          </Button>
-          <Menu
-            anchorEl={anchorElEducation}
-            open={Boolean(anchorElEducation)}
-            onClose={handleMenuClose}
+          <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "education")}>{t("navigation.education")}</Button>
+          <Menu anchorEl={anchorEducation} open={Boolean(anchorEducation)} onClose={handleClose}
+            PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
             anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}
-          >
-            {trainingCategories.map((value) => (
-              <MenuItem
-                key={value.id}
-                component={NavLink}
-                to="/education"
-                state={value}
-                onClick={handleMenuClose}
-              >
-                {value.name}
+            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}>
+            {trainingCategories.map(item => (
+              <MenuItem key={item.id} component={NavLink} to="/education" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
+                {item.name}
               </MenuItem>
             ))}
           </Menu>
 
-          {/* Language Switcher */}
           <LanguageSwitcher />
         </Box>
 
-        {/* Mobile Menu */}
+        {/* Mobile Hamburger Menu */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={(e) => setMobileMenuAnchor(e.currentTarget)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-            anchorEl={mobileMenuAnchor}
-            open={Boolean(mobileMenuAnchor)}
-            onClose={handleMenuClose}
-          >
-            {navLinks.map((link) => (
-              <MenuItem
-                key={link.to}
-                component={NavLink}
-                to={link.to}
-                onClick={handleMenuClose}
-              >
-                {link.label}
-              </MenuItem>
+          <IconButton onClick={(e) => setMobileAnchor(e.currentTarget)}><MenuIcon /></IconButton>
+          <Menu anchorEl={mobileAnchor} open={Boolean(mobileAnchor)} onClose={handleClose}
+            PaperProps={{ sx: { borderRadius: 2, px: 2, py: 2, minWidth: 220, boxShadow: "0 8px 20px rgba(0,0,0,0.15)" } }}>
+            {navLinks.map(link => (
+              <MenuItem key={link.to} component={NavLink} to={link.to} onClick={handleClose}>{link.label}</MenuItem>
             ))}
-            {/* Products and Education can be nested here if needed */}
+
+            {/* Products accordion */}
+            <MenuItem onClick={() => setMobileProductsOpen(prev => !prev)}>{t("navigation.products")}</MenuItem>
+            <Collapse in={mobileProductsOpen} timeout="auto" unmountOnExit>
+              {productCategories.map(item => (
+                <MenuItem key={item.id} component={NavLink} to="/products" state={item} onClick={handleClose} sx={{ pl: 4 }}>
+                  {getLocalizedValue(item, "name")}
+                </MenuItem>
+              ))}
+            </Collapse>
+
+            {/* Education accordion */}
+            <MenuItem onClick={() => setMobileEducationOpen(prev => !prev)}>{t("navigation.education")}</MenuItem>
+            <Collapse in={mobileEducationOpen} timeout="auto" unmountOnExit>
+              {trainingCategories.map(item => (
+                <MenuItem key={item.id} component={NavLink} to="/education" state={item} onClick={handleClose} sx={{ pl: 4 }}>
+                  {item.name}
+                </MenuItem>
+              ))}
+            </Collapse>
           </Menu>
         </Box>
       </Toolbar>

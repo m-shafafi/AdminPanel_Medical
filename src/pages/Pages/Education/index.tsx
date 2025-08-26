@@ -55,7 +55,6 @@ const Education = () => {
       <Navbar />
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
-        title={t("navigation.education")}
         txtTitleBanner={t("navigation.education")}
         menu={[
           { url: "/", desc: t("navigation.home") },

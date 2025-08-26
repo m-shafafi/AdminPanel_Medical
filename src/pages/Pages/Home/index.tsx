@@ -22,7 +22,6 @@ const Home = () => {
         txtDescBanner={t("txtDescBanner")}
         menu={[]}
         imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
-        title={""}
 
       />
     </div>

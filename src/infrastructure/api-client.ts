@@ -41,7 +41,7 @@ axiosInstanceProfiles.interceptors.request.use((config) => {
 
 class APIClient<TBody, TResponse> {
   endpoint: string;
-  constructor(endpoint: string, serviceKey: "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl") {
+  constructor(endpoint: string, serviceKey: "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl" | "galleryApiBaseUrl") {
     const { baseUrl } = ApiConfigSingleton.getApiConfig(serviceKey);
     this.endpoint = baseUrl + endpoint;
   }
@@ -52,10 +52,10 @@ class APIClient<TBody, TResponse> {
   //   return result;
   // };
   getAll = (params?: Record<string, any>) => {
-  return axiosInstance
-    .get<TResponse>(this.endpoint, { params })
-    .then((res) => res.data);
-};
+    return axiosInstance
+      .get<TResponse>(this.endpoint, { params })
+      .then((res) => res.data);
+  };
 
 
   get = (id: number | string) => {

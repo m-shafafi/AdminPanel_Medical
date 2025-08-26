@@ -68,7 +68,6 @@ const CatalogPage = () => {
       <Navbar />
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
-        title={t("navigation.catalogs")}
         txtTitleBanner={t("navigation.catalogs")}
         menu={[
           { url: "/", desc: t("navigation.home") },

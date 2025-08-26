@@ -1,4 +1,4 @@
-type ServiceKey = "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl";
+type ServiceKey = "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl" | "galleryApiBaseUrl";
 
 class ApiConfigSingleton {
   private static instance: ApiConfigSingleton;

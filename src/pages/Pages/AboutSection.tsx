@@ -16,7 +16,6 @@ const AboutSection = () => {
       <Navbar />
       <Header
         imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
-        title={t("navigation.about")}
         txtTitleBanner={t("navigation.about")}
         menu={[
           { url: "/", desc: t("navigation.home") },

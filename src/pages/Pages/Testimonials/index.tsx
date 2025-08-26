@@ -15,8 +15,6 @@ const Testimonials = () => {
       <Navbar />
       <Header
         imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
-
-        title={t("navigation.testimonials")}
         txtTitleBanner={t("navigation.testimonials")}
         menu={[
           { url: "/", desc: t("navigation.home") },

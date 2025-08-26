@@ -14,8 +14,6 @@ const PageNotFound = () => {
       <Navbar />
       <Header
         imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
-
-        title={t("navigation.pageNotFound")}
         txtTitleBanner={t("navigation.pageNotFound")}
         menu={[
           { url: "/", desc: t("navigation.home") },

@@ -9,3 +9,6 @@ export * from "../application/Education/Categories/GetAllTrainingCategoriesQuery
 export * from "../application/Education/GetAllTrainingQueryHandler";
 export * from "../application/News/NewsComments/GetAllNewsCommentsQuery";
 export * from "../application/News/NewsComments/GetAllNewsCommentsQueryHandler";
+export * from "../application/Education/GetAllTrainingQueryHandler";
+export * from "../application/Gallery/GetAllGalleryQuery";
+export * from "../application/Gallery/GetAllGalleryQueryHandler";

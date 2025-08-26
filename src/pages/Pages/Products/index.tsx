@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Header from "../../Components/Header";
+import Header from "../../Header/Header";
 import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import { useLocation } from "react-router-dom";
@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
 import i18n from "i18n";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
+import ProductsSection from "./ProductsSection";
 
 
 
@@ -15,7 +16,11 @@ const Products = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const state = location.state as CategoryProductListResponse;
+  const [openProductId, setOpenProductId] = useState<number | null>(null);
 
+  const toggleAccordion = (id: number) => {
+    setOpenProductId(openProductId === id ? null : id);
+  };
   const { data, error } = useGetAllProducts();
 
   const [products, setProducts] = useState<ProductListResponse[]>([]);
@@ -27,22 +32,9 @@ const Products = () => {
     setProducts(productsList);
   }, [data, state.id]);
 
-  const getLocalizedValue = (
-    product: ProductListResponse,
-    field: "name" | "description"
-  ) => {
-    switch (i18n.language) {
-      case "en-GB":
-        return product[`${field}_EN`];
-      case "ar-GB":
-        return product[`${field}_AR`];
-      case "fa-IR":
-      default:
-        return product[`${field}_FA`];
-    }
-  };
+
   const getLocalizedValueCategury = (item: CategoryProductListResponse, field: "name") => {
-    console.log({item})
+    console.log({ item })
     switch (i18n.language) {
       case "en-GB":
         return item[`${field}_EN`];
@@ -83,50 +75,9 @@ const Products = () => {
             </div>
           </div>
 
-          <div className="g-4 justify-content-center">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="col-md-12 col-lg-12 col-xl-12 wow fadeInUp"
-                data-wow-delay={getLocalizedValue(product, "name")}
-              >
-                <div className="row-cols-1 mb-4 feature-item p-4">
-                  <div className="col-12">
-                    <div className="feature-icon mb-4">
-                      <div className="p-10 d-inline-flex bg-white rounded">
-                        <img
-                          src={product.imageURL}
-                          alt={getLocalizedValue(product, "name")}
-                          style={{ width: "20rem", height: "20rem" }}
-                        />
-                      </div>
-                      <div className="feature-content d-flex flex-column m-4">
-                        <h2
-                          className="mb-20 justify-content-center"
-                          style={{ textAlign: "center", marginBottom: "3rem" }}
-                        >
-                          {product.name_FA}
-                        </h2>
-                        <p className="mb-0">
-                          {getLocalizedValue(product, "description")}
-                        </p>
-                        <div className="text-center mt-4">
+          <ProductsSection products={products} />
 
 
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-            {/* <div className="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-              <a href="#" className="btn btn-primary rounded-pill text-white py-3 px-5">
-                More Details
-              </a>
-            </div> */}
-          </div>
         </div>
       </div>
     </>

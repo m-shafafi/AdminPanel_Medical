@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Header from "../Components/Header";
+import Header from "../Header/Header";
 import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../Components/Topbar";
 import React from "react";
@@ -15,7 +15,7 @@ const AboutSection = () => {
       <Topbar />
       <Navbar />
       <Header
-       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
+        imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
         title={t("navigation.about")}
         txtTitleBanner={t("navigation.about")}
         menu={[
@@ -52,7 +52,7 @@ const AboutSection = () => {
                mb-5">
                 <h4 className="sub-title pe-3 mb-0">{t("navigation.about")}</h4>
                 <h1 className="display-3 mb-4">
-                {t("about.title")}
+                  {t("about.title")}
                 </h1>
                 <p className="mb-4">{t("about.description")}</p>
                 {/* <div className="mb-4">
@@ -73,7 +73,7 @@ const AboutSection = () => {
                   href="#"
                   className="btn btn-primary rounded-pill text-white py-3 px-5"
                 >
-               {t('button.discoverMore')}
+                  {t('button.discoverMore')}
                 </a>
               </div>
             </div>

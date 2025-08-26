@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Header from "../../Components/Header";
+import Header from "../../Header/Header";
 import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import React, { useEffect, useState } from "react";
@@ -77,9 +77,8 @@ const NewsAndArticlesPage = () => {
 
                     {/* Accordion Content */}
                     <div
-                      className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                        expandedIndex === index ? "max-h-96" : "max-h-16"
-                      }`}
+                      className={`transition-all duration-500 ease-in-out overflow-hidden ${expandedIndex === index ? "max-h-96" : "max-h-16"
+                        }`}
                     >
                       <p className="text-gray-700">
                         {getLocalizedValue(post, "content")}

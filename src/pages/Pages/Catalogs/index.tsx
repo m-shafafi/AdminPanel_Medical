@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Topbar from "pages/Components/Topbar";
 import Navbar from "pages/Components/navbar/Navbar";
-import Header from "pages/Components/Header";
+import Header from "pages/Header/Header";
 import { useTranslation } from "react-i18next";
 import ProductListResponse from "common/entities/Product/ProductListResponse";
 import useGetAllProducts from "../../../hooks/useGetAllProduct";

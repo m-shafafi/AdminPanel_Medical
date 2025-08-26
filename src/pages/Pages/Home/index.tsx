@@ -1,7 +1,7 @@
 import Topbar from '../../Components/Topbar';
 import Navbar from "pages/Components/navbar/Navbar";
 import React from 'react';
-import Header from 'pages/Components/Header';
+import Header from 'pages/Header/Header';
 import { useTranslation } from 'react-i18next';
 // import MenuNavbar from 'pages/Components/navbar';
 

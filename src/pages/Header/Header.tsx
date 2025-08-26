@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 type TextAlign =
   | "left"
@@ -27,7 +28,9 @@ type Props = {
   width?: string;
 };
 
+
 const Header = (props: Props) => {
+  console.log((props.menu?.length ?? 0) - 1)
   return (
     <div className="container-fluid p-0">
       <div className="position-relative w-100">
@@ -61,10 +64,10 @@ const Header = (props: Props) => {
                   <ol className="breadcrumb justify-content-center mb-2">
                     {props.menu.map((item, index) => (
                       <li key={index} className="breadcrumb-item">
-                        <Link to={item.url} className="link-light">
+                        <Link to={item.url} className="!font-medium !text-blue-900 !dark:text-blue-900 !hover:underline">
                           {item.desc}
                         </Link>
-                        {index < (props.menu?.length ?? 0) - 1 && (
+                        {index !== (props.menu?.length ?? 0) - 1 && (
                           <span className="mx-2 text-gray-400">/</span>
                         )}
                       </li>

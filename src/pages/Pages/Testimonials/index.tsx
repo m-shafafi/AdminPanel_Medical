@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Header from "../../Components/Header";
+import Header from "../../Header/Header";
 import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import i18n from "../../../i18n";
@@ -14,7 +14,7 @@ const Testimonials = () => {
       <Topbar />
       <Navbar />
       <Header
-            imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
+        imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
 
         title={t("navigation.testimonials")}
         txtTitleBanner={t("navigation.testimonials")}

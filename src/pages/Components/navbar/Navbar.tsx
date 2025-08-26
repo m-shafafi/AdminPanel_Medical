@@ -68,7 +68,6 @@ const Navbar = () => {
     { label: t("navigation.catalogs"), to: "/catalogs" },
     { label: t("navigation.gallery"), to: "/gallery" },
     { label: t("navigation.articles"), to: "/NewsAndArticlesPage" },
-    { label: t("navigation.testimonials"), to: "/testimonials" },
     { label: t("navigation.contact"), to: "/contact" },
   ];
 

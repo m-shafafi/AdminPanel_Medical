@@ -1,7 +1,7 @@
 
 import Topbar from "../Components/Topbar";
 import Navbar from "pages/Components/navbar/Navbar";
-import Header from "../Components/Header";
+import Header from "../Header/Header";
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ const PageNotFound = () => {
       <Topbar />
       <Navbar />
       <Header
-            imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
+        imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
 
         title={t("navigation.pageNotFound")}
         txtTitleBanner={t("navigation.pageNotFound")}

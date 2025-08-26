@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Header from "../../Components/Header";
+import Header from "../../Header/Header";
 import Topbar from "../../Components/Topbar";
 import React from "react";
 import Navbar from "pages/Components/navbar/Navbar";
@@ -50,7 +50,7 @@ const GalleryPage = () => {
       <Topbar />
       <Navbar />
       <Header
-       imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
+        imgBanner='https://zhubinshahyad.com/media/Files/img/About/Banner.png'
         title={t("navigation.gallery")}
         txtTitleBanner={t("navigation.gallery")}
         menu={[

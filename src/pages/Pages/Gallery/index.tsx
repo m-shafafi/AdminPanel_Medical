@@ -3,13 +3,12 @@ import Header from "../../Header/Header";
 import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import i18n from "i18n";
-import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
-import GenericSection from "../../Components/Generic/GenericSection";
-import GetAllCategoryProductQuery from "business/application/Product/Category/GetAllCategoryProductQuery";
 import { GalleryResponse } from "common/entities/Gallery/GalleryResponse";
 import useGetAllGallery from "hooks/useGetAllGallery";
+import GalleryGroup from "./GalleryScrollPage";
+import GalleryScrollPage from "./GalleryScrollPage";
 
 
 
@@ -25,6 +24,22 @@ const GalleryPage = () => {
   const { data, error } = useGetAllGallery(currentLang);
 
   const [galleries, setGallery] = useState<GalleryResponse[]>([]);
+
+  const groupedGalleries = useMemo(() => {
+    if (!galleries || galleries.length === 0) return [];
+    const groups: Record<number, GalleryResponse[]> = {};
+    galleries.forEach(item => {
+      if (!groups[item.categoryId]) {
+        groups[item.categoryId] = [];
+      }
+      groups[item.categoryId].push(item);
+    });
+
+    return Object.entries(groups).map(([id, items]) => ({
+      id: Number(id),
+      items
+    }));
+  }, [galleries]);
 
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -49,20 +64,7 @@ const GalleryPage = () => {
           { url: "/contact", desc: t("navigation.contact") },
         ]}
       />
-      <div className="container-fluid feature py-5">
-        <div className="container py-5">
-          <div
-            className="section-title mb-5 wow fadeInUp"
-            data-wow-delay="0.1s"
-          >
-
-          </div>
-
-          <GenericSection items={galleries} nameField="title" descriptionField="desc" />
-
-
-        </div>
-      </div>
+      <GalleryScrollPage galleries={galleries} />
     </>
   );
 };

@@ -1,7 +1,0 @@
-steps docker :
-docker build -t medicalsite .
-docker run -p 3000:80 medicalsite
-docker save medicalsite -o medicalsite.tar
-scp medicalsite.tar root@91.107.182.124:/home/user/14040526
-docker load -i /home/user/14040526/medicalsite.tar
-docker run -d --name medicalsite -p 3001:80 medicalsite:latest

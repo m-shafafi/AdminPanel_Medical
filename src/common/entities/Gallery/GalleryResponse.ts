@@ -6,7 +6,7 @@ export interface GalleryResponse {
     desc_FA: string | null;
     desc_EN: string | null;
     desc_AR: string | null;
-    imageURL: string;
+    imageUrl: string;
     categoryId: number;
     serviceType: string | null;
     creationDateTime: string; // ISO string

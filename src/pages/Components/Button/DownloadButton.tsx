@@ -5,7 +5,8 @@ import DownloadIcon from "@mui/icons-material/Download";
 interface Props{
     hrefLink :string,
     downloadLink:string,
-    text:string
+    text:string,
+    target:string
 }
 const DownloadButton = (props:Props) => {
   const handleDownload = () => {
@@ -13,6 +14,7 @@ const DownloadButton = (props:Props) => {
     const link = document.createElement("a");
     link.href = props.hrefLink; 
     link.download = props.downloadLink;
+    link.target=props.target;
     link.click();
   };
 
@@ -20,8 +22,7 @@ const DownloadButton = (props:Props) => {
     <Button
       variant="contained"
       onClick={handleDownload}
-      startIcon={<DownloadIcon />}
-      className="!bg-gradient-to-r !from-indigo-500 !to-purple-500 hover:!from-indigo-600 hover:!to-purple-600 text-white font-medium rounded-xl px-4 py-2 text-sm shadow-md transition-all duration-300"
+  className="bg-gradient-to-r from-cyan-600 to-blue-900  !w-40 !h-10 !text-white rounded-xl px-6 py-3 !font-bold  !text-lg shadow-sm  transition-all duration-300"
     >
       {props.text}
     </Button>

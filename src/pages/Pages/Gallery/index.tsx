@@ -58,7 +58,7 @@ const GalleryPage = () => {
       <Navbar />
       <Header
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
-        txtTitleBanner={t("navigation.products")}
+        txtTitleBanner={t("navigation.gallery")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },

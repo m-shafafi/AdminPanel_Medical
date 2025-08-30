@@ -49,7 +49,7 @@ const GalleryStep = ({ items }: { items: GalleryResponse[] }) => {
   };
 
   return (
-    <section className="h-screen snap-start flex flex-col items-center justify-center p-6">
+<section className="snap-start flex flex-col items-center justify-center p-6">
       <h2 className="text-2xl font-bold mb-6">
         {getLocalizedValue(items[0], "title")}
       </h2>
@@ -62,14 +62,14 @@ const GalleryStep = ({ items }: { items: GalleryResponse[] }) => {
           pagination={{ clickable: true }}
           spaceBetween={20}
           slidesPerView={1}
-          className="rounded-xl shadow-md"
+          className="rounded-xl mb-7"
         >
           {items.map(item => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id} className="flex items-center justify-center">
               <img
                 src={item.imageUrl}
                 alt={getLocalizedValue(item, "title")}
-                className="w-full h-[400px] object-cover rounded-xl"
+                className="w-full h-auto object-contain rounded-xl"
               />
             </SwiperSlide>
           ))}

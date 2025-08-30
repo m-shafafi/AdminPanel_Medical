@@ -46,11 +46,11 @@ export default function GenericSection<T>({
                         }`}
                 >
                     {/* تصویر (همیشه imageUrl) */}
-                    <div className="w-full md:w-1/2">
+                    <div className="w-full">
                         <img
                             src={getFieldValue(item, ["imageURL", "imageUrl", "ImageURL", "ImageUrl"])}
                             alt={getLocalizedValue(item, nameField)}
-                            className="w-full h-64 md:h-80 rounded-2xl object-cover"
+                            className="w-full min-h-1 !object-contain"
                         />
                     </div>
 

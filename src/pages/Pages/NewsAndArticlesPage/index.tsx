@@ -54,11 +54,7 @@ const NewsAndArticlesPage = () => {
       />
       <div className="container-fluid blog py-5">
         <div className="container py-5">
-          <div className="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div className="sub-style">
-              <h4 className="sub-title px-3 mb-0">{t("navigation.articles")}</h4>
-            </div>
-          </div>
+    
           <div className="row g-4 justify-content-center">
             {newsComment.map((post, index) => (
               <div
@@ -70,7 +66,7 @@ const NewsAndArticlesPage = () => {
                   <div className="blog-centent p-4">
                     <img
                       src={post.imageURL}
-                      className="w-full h-64 object-cover rounded mb-3"
+                      className="w-full h-64 object-contain rounded mb-3"
                     />
                     <p className="h4 mb-2">{getLocalizedValue(post, "title")}</p>
 

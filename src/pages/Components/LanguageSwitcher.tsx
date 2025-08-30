@@ -30,7 +30,7 @@ const LanguageSwitcher = () => {
       <select
         value={lang}
         onChange={handleChange}
-        className="appearance-none bg-transparent px-2 py-1 text-base focus:outline-none"
+        className="appearance-none bg-transparent px-2 py-1 text-blue-950 focus:outline-none"
         style={{ fontSize: "1rem",borderColor:"transparent" }} // برای بزرگ‌تر شدن پرچم‌ها
       >
         {languages.map(({ code, label, flag }) => (

@@ -10,17 +10,14 @@ const Topbar = () => {
         {/* اطلاعات تماس */}
         <div className="col-12 col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
           <div className="d-flex flex-wrap justify-content-center justify-content-lg-start">
-            <a href="#" className="text-light me-3 small">
-              <i className="fas fa-map-marker-alt text-primary me-1"></i>
-              {t("FindLocation")}
-            </a>
-            <a href="tel:+01234567890" className="text-light me-3 small">
+       
+            <a href="tel:+989106069008" className="text-light me-3 small">
               <i className="fas fa-phone-alt text-primary me-1"></i>
-              +01234567890
+              +989106069008
             </a>
-            <a href="mailto:Example@gmail.com" className="text-light small">
+            <a href="mailto:info@zhubinshahyad.com" className="text-light small">
               <i className="fas fa-envelope text-primary me-1"></i>
-              Example@gmail.com
+              info@zhubinshahyad.com
             </a>
           </div>
         </div>
@@ -28,13 +25,8 @@ const Topbar = () => {
         {/* شبکه‌های اجتماعی */}
         <div className="col-12 col-lg-4 text-center text-lg-end mt-2 mt-lg-0">
           <div className="d-flex justify-content-center justify-content-lg-end">
-            <a href="#" className="btn btn-light btn-sm btn-square border rounded-circle me-2">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" className="btn btn-light btn-sm btn-square border rounded-circle me-2">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="btn btn-light btn-sm btn-square border rounded-circle me-2">
+           
+              <a href="#" className="btn btn-light btn-sm btn-square border rounded-circle me-2">
               <i className="fab fa-instagram"></i>
             </a>
             <a href="#" className="btn btn-light btn-sm btn-square border rounded-circle">

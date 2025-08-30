@@ -1,9 +1,9 @@
 {
   "serviceUrls": {
 
-    "productsApiBaseUrl": "/productsApi/",
-    "newsApiBaseUrl": "/newsApi/",
-    "educationApiBaseUrl": "/educationApi/",
-    "galleryApiBaseUrl": "/galleryApi/"
+    "productsApiBaseUrl": "http://91.107.182.124:10000",
+    "newsApiBaseUrl": "http://91.107.182.124:10002",
+    "educationApiBaseUrl": "http://91.107.182.124:10003",
+    "galleryApiBaseUrl": "http://91.107.182.124:10004"
   }
 }

@@ -20,7 +20,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = (props:VideoPlayerProps) => {
       />
       <div style={{ marginTop: 15 }}>
   
-                <DownloadButton hrefLink={props.src} downloadLink={props.src} text={t("download.video")} />
+                <DownloadButton target="_BLANK" hrefLink={props.src} downloadLink={props.src} text={t("download.video")} />
 
         
       </div>

@@ -68,11 +68,11 @@ const Education = () => {
       ) : (
         <div className="container-fluid blog py-5">
           <div className="container">
-            <div className="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-              <div className="sub-style">
+            <div className="section-title  wow fadeInUp" data-wow-delay="0.1s">
+              {/* <div className="sub-style">
                 <h4 className="sub-title px-3 mb-0">{t("navigation.education")}</h4>
-              </div>
-              <h1 className="display-5 mb-4">{state?.name}</h1>
+              </div> */}
+              <h3 className="display-9">{state?.name}</h3>
             </div>
 
             <div className="row g-4 justify-content-center">

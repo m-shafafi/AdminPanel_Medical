@@ -1,6 +1,9 @@
 import React from "react";
 import i18n from "i18n";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css"; // استایل پیشفرض Swiper
+import "swiper/css/navigation";
+import { Navigation, Pagination } from "swiper/modules";
 interface GenericSectionProps<T> {
     items: T[];
     nameField: string;        // پایه فیلد اسم، بدون _FA/_EN/_AR
@@ -46,12 +49,31 @@ export default function GenericSection<T>({
                         }`}
                 >
                     {/* تصویر (همیشه imageUrl) */}
-                    <div className="w-full">
-                        <img
+                    <div className="w-full max-w-3x">
+                        {/* <img
                             src={getFieldValue(item, ["imageURL", "imageUrl", "ImageURL", "ImageUrl"])}
                             alt={getLocalizedValue(item, nameField)}
                             className="w-full min-h-1 !object-contain"
-                        />
+                        /> */}
+
+                        <Swiper
+                            modules={[Navigation, Pagination]}
+                            navigation
+                            pagination={{ clickable: true }}
+                            spaceBetween={20}
+                            slidesPerView={1}
+                            className="rounded-xl mb-7"
+                        >
+                            {items.map(item => (
+                                <SwiperSlide key={getFieldValue(item, ["id", "Id", "ID"])} className="flex items-center justify-center">
+                                    <img
+                                        src={getFieldValue(item, ["imageURL", "imageUrl", "ImageURL", "ImageUrl"])}
+                                        alt={getLocalizedValue(item, nameField)}
+                                        className="w-full h-auto object-contain rounded-xl"
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
 
                     {/* متن */}

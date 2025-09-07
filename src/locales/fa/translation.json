@@ -38,5 +38,6 @@
   "actions.DownloadPDF": "دانلود ",
   "Please wait, processing": "لطفا منتظر بمانید",
   "button.readLess": "کمتر بخوانید",
-  "no_data_available": "اطلاعاتی وجود ندارد"
+  "no_data_available": "اطلاعاتی وجود ندارد",
+  "no_image_available": "هیچ تصویری موجود نیست"
 }

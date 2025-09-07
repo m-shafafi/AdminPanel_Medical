@@ -36,5 +36,7 @@
 "video.message":"Your browser does not support video playback.",
 "messages.noCatalog":"There is no catalog.",
 "Please wait, processing":"Please wait, processing",
-"button.readLess":"read Less"
+"button.readLess":"read Less",
+  "no_data_available": "There is no information.",
+  "no_image_available": "No images available."
 }

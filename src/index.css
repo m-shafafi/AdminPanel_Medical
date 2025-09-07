@@ -2,3 +2,19 @@
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
 @import "tailwindcss";
+
+/* تغییر رنگ و اندازه دکمه بعدی و قبلی */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #121a35 !important; /* رنگ آبی تیره Tailwind (blue-900) */
+  width: 2rem;
+  height: 2rem;
+}
+
+@media (min-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 1rem;
+    height: 1rem;
+  }
+}

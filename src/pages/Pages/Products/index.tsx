@@ -5,10 +5,10 @@ import Topbar from "../../Components/Topbar";
 import { useLocation } from "react-router-dom";
 import useGetAllProducts from "../../../hooks/useGetAllProduct";
 import React, { useEffect, useState } from "react";
-import ProductListResponse from "common/entities/Product/ProductListResponse";
 import i18n from "i18n";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import GenericSection from "../../Components/Generic/GenericSection";
+import { ProductListResponse } from "common/entities/Product/ProductListResponse";
 
 
 

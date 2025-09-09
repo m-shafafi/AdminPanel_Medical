@@ -1,9 +1,7 @@
 
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Mediator } from "@Mediatr/index";
-import  ProductListResponse  from "../common/entities/Product/ProductListResponse";
 import ms from "ms";
-import GetAllProductQuery from "business/application/Product/GetAllProductQuery";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import GetAllCategoryProductQuery from "business/application/Product/Category/GetAllCategoryProductQuery";
 import { useEffect } from "react";

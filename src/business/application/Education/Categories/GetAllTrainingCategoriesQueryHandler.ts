@@ -1,4 +1,4 @@
-import  ProductListResponse  from "common/entities/Product/ProductListResponse";
+
 import APIClient from "infrastructure/api-client";
 import {   GetAllTrainingCategories } from "infrastructure/end-points";
 import { IRequestHandler, requestHandler } from "@Mediatr/index";

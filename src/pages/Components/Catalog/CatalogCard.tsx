@@ -22,7 +22,7 @@ const CatalogCard = (props: CatalogCardProps) => {
         src={props.coverPdfUrl}
         alt={props.title}
         className="object-cover rounded-md mb-4"
-        style={{ width: "100%"}}
+        style={{ width: "100%" }}
       />
 
       {/* عنوان */}

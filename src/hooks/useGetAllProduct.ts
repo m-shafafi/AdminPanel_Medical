@@ -1,10 +1,10 @@
 
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Mediator } from "@Mediatr/index";
-import  ProductListResponse  from "../common/entities/Product/ProductListResponse";
 import ms from "ms";
 import GetAllProductQuery from "business/application/Product/GetAllProductQuery";
 import { useEffect } from "react";
+import { ProductListResponse } from "common/entities/Product/ProductListResponse";
 
 
 const mediator = new Mediator();

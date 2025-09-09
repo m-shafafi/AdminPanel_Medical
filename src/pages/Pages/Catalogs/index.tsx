@@ -3,13 +3,13 @@ import Topbar from "pages/Components/Topbar";
 import Navbar from "pages/Components/navbar/Navbar";
 import Header from "pages/Header/Header";
 import { useTranslation } from "react-i18next";
-import ProductListResponse from "common/entities/Product/ProductListResponse";
 import useGetAllProducts from "../../../hooks/useGetAllProduct";
 import { useLocation } from "react-router-dom";
 import i18n from "i18n";
 import CatalogCard from "pages/Components/Catalog/CatalogCard";
 import "./CatalogPage.css";
 import LoadingModal from "pages/Components/Loading/Loading";
+import { ProductListResponse } from "common/entities/Product/ProductListResponse";
 
 export interface CategoryItem {
   Id: number;
@@ -91,11 +91,11 @@ const CatalogPage = () => {
         {!loading && products.length > 0 && (
           <div className="catalog-grid">
             {products.map((item) =>
-              item.catalog_cover_image_url ? (
+              item.catalogCoverImageUrl ? (
                 <CatalogCard
                   key={item.id}
                   pdfUrl={item.catalogURL}
-                  coverPdfUrl={item.catalog_cover_image_url}
+                  coverPdfUrl={item.catalogCoverImageUrl}
                   title={getLocalizedValue(item, "name")}
                   description={
                     getLocalizedValue(item, "description") || "No description"

@@ -27,8 +27,8 @@ export interface ProductListResponse {
 
   // تصاویر و فایل‌ها
   imageUrls: string[]; // یا [] اگر ندارد
-  catalogURL: string | null;
-  catalogCoverImageUrl: string | null;
+  catalogURL: string;
+  catalogCoverImageUrl: string;
 
   // اطلاعات محصول در سیستم
   productId: number;

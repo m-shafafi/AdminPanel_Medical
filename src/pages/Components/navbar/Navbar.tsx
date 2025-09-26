@@ -69,7 +69,7 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Menu */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", flexDirection: isRtl ? "row-reverse" : "row" }}>
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", flexDirection: isRtl ? "row" : "row-reverse" }}>
           {navLinks.map(link => (
             <Button key={link.to} component={NavLink} to={link.to}
               sx={{ color: "text.primary", fontWeight: 500, textTransform: "none", transition: "all 0.3s", "&:hover": { color: "primary.main", transform: "scale(1.05)" } }}>
@@ -78,11 +78,11 @@ const Navbar = () => {
           ))}
 
           <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "products")}>{t("navigation.products")}</Button>
-          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose}
+          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose} 
             PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
-            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}>
-            {productCategories.map(item => (
+            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "left" : "right" }}
+            transformOrigin={{ vertical: "top", horizontal: isRtl ? "left" : "right" }}>
+            {productCategories?.map(item => (
               <MenuItem key={item.id} component={NavLink} to="/products" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
                 {getLocalizedValue(item, "name")}
               </MenuItem>
@@ -92,9 +92,9 @@ const Navbar = () => {
           <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "education")}>{t("navigation.education")}</Button>
           <Menu anchorEl={anchorEducation} open={Boolean(anchorEducation)} onClose={handleClose}
             PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
-            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}>
-            {trainingCategories.map(item => (
+            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "left" : "right" }}
+            transformOrigin={{ vertical: "top", horizontal: isRtl ? "left" : "right" }}>
+            {trainingCategories?.map(item => (
               <MenuItem key={item.id} component={NavLink} to="/education" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
                 {item.name}
               </MenuItem>
@@ -109,14 +109,14 @@ const Navbar = () => {
           <IconButton onClick={(e) => setMobileAnchor(e.currentTarget)}><MenuIcon /></IconButton>
           <Menu anchorEl={mobileAnchor} open={Boolean(mobileAnchor)} onClose={handleClose}
             PaperProps={{ sx: { borderRadius: 2, px: 2, py: 2, minWidth: 220, boxShadow: "0 8px 20px rgba(0,0,0,0.15)" } }}>
-            {navLinks.map(link => (
+            {navLinks?.map(link => (
               <MenuItem key={link.to} component={NavLink} to={link.to} onClick={handleClose}>{link.label}</MenuItem>
             ))}
 
             {/* Products accordion */}
             <MenuItem onClick={() => setMobileProductsOpen(prev => !prev)}>{t("navigation.products")}</MenuItem>
             <Collapse in={mobileProductsOpen} timeout="auto" unmountOnExit>
-              {productCategories.map(item => (
+              {productCategories?.map(item => (
                 <MenuItem key={item.id} component={NavLink} to="/products" state={item} onClick={handleClose} sx={{ pl: 4 }}>
                   {getLocalizedValue(item, "name")}
                 </MenuItem>
@@ -126,7 +126,7 @@ const Navbar = () => {
             {/* Education accordion */}
             <MenuItem onClick={() => setMobileEducationOpen(prev => !prev)}>{t("navigation.education")}</MenuItem>
             <Collapse in={mobileEducationOpen} timeout="auto" unmountOnExit>
-              {trainingCategories.map(item => (
+              {trainingCategories?.map(item => (
                 <MenuItem key={item.id} component={NavLink} to="/education" state={item} onClick={handleClose} sx={{ pl: 4 }}>
                   {item.name}
                 </MenuItem>

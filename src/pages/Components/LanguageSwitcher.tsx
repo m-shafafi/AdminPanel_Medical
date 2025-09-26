@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
 
   useEffect(() => {
     const isRTL = lang === "fa-IR" || lang === "ar-GB";
-    document.documentElement.dir = isRTL ? "rtl" : "ltr";
+    document.documentElement.dir = isRTL ? "ltr" : "rtl";
     document.documentElement.lang = lang;
   }, [lang]);
 

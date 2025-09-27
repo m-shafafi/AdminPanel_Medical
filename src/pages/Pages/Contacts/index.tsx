@@ -76,8 +76,11 @@ const Contact = () => {
                     <i className="fa fa-phone-alt fa-2x text-primary"></i>
                   </div>
                   <h4 className="text-dark">{t('contact.MobileTitle')}</h4>
-                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>+012 345 67890</p>
-                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>+012 345 67890</p>
+                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>{t("contacts_sales_contact")}</p>
+                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>{t("contacts_sales_phone")}</p>
+
+                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>{t("contacts_support_contact")}</p>
+                  <p className="mb-0 text-white" style={{ direction: "ltr" }}>{t("contacts_support_phone")}</p>
                 </div>
 
                 <div className="d-flex flex-column align-items-center text-center">
@@ -88,8 +91,8 @@ const Contact = () => {
                     <i className="fa fa-envelope-open fa-2x text-primary"></i>
                   </div>
                   <h4 className="text-dark">{t('contact.EmailTitle')}</h4>
-                  <p className="mb-0 text-white">info@example.com</p>
-                  <p className="mb-0 text-white">info@example.com</p>
+                  <p className="mb-0 text-white">info@zhubinshahyad.com</p>
+                  <p className="mb-0 text-white">info@zhubinshahyad.com</p>
                 </div>
               </div>
             </div>

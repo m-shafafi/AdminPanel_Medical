@@ -12,7 +12,7 @@
   "navigation.bookAppointment": "Book Appointment",
   "navigation.logout": "Logout",
   "about.description": "Zhubin Shahyad Company has been importing medical equipment since 2018 with the aim of introducing the most advanced minimally invasive spine surgery methods to skilled physicians and surgeons in this region for better treatment, reduced financial costs, and greater effectiveness of treatments using the latest global technologies. It is a sales representative of the top European and Asian manufacturing companies active in the fields of spine, orthopedics, and pain management. Our company has been able to place Iran among the most advanced countries in the world in the treatment of various types of disc ruptures and spinal canal stenosis by establishing the Zhubin Pain Clinic, which is one of the most equipped educational and therapeutic pain clinics. It has also entered the production field by producing various types of bone biomaterials (spine, cranio, and orthopedic cements).",
-  "about.title": "We are ready to help improve your treatment."
+  "about.title": "We are ready to help improve your treatment"
  ,"about.yearsOfExperience":"15 years of experience"
   ,"contact.addressClinic":"Address of the Zhobin Pain Clinic: Tehran, Azadi St., Eskandari Intersection, Negin Azadi Tower, 4th Floor"
  ,"contact.addressCompany": "Company address: Tehran, West Zaratasht St., No. 6, Unit 94"
@@ -38,5 +38,9 @@
 "Please wait, processing":"Please wait, processing",
 "button.readLess":"read Less",
   "no_data_available": "There is no information.",
-  "no_image_available": "No images available."
+  "no_image_available": "No images available.",
+  "contacts_sales_contact": "Sales Manager",
+    "contacts_support_contact": "Support Manager",
+    "contacts_sales_phone": "+98 9106069008",
+    "contacts_support_phone": "+98 9106069008"
 }

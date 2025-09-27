@@ -14,10 +14,10 @@ const GalleryScrollPage = ({ galleries }: GallerySectionProps) => {
   const groupedGalleries = useMemo(() => {
     const groups: Record<number, GalleryResponse[]> = {};
     galleries.forEach(item => {
-      if (!groups[item.categoryId]) {
-        groups[item.categoryId] = [];
+      if (!groups[item.categoriesGalleryId]) {
+        groups[item.categoriesGalleryId] = [];
       }
-      groups[item.categoryId].push(item);
+      groups[item.categoriesGalleryId].push(item);
     });
     return Object.entries(groups).map(([id, items]) => ({
       id: Number(id),

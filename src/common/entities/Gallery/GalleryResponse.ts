@@ -7,7 +7,7 @@ export interface GalleryResponse {
     desc_EN: string | null;
     desc_AR: string | null;
     imageUrl: string;
-    categoryId: number;
+    categoriesGalleryId: number;
     serviceType: string | null;
     creationDateTime: string; // ISO string
     modificationDateTime: string; // ISO string

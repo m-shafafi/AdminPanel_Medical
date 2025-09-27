@@ -15,6 +15,7 @@ const NewsAndArticlesPage = () => {
   const { data, error } = useGetAllNewsComment();
   const [newsComment, setNewsComment] = useState<NewsCommentsResponse[]>([]);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
 
   useEffect(() => {
     if (!data || data.length === 0) return;
@@ -68,19 +69,20 @@ const NewsAndArticlesPage = () => {
                       src={post.imageURL}
                       className="w-full h-64 object-contain rounded mb-3"
                     />
-                    <p className="h4 mb-2">{getLocalizedValue(post, "title")}</p>
+                    <p style={{textAlign : isRtl ? "right" : "left"}} className="h4 mb-2">{getLocalizedValue(post, "title")}</p>
 
                     {/* Accordion Content */}
                     <div
-                      className={`transition-all duration-500 ease-in-out overflow-hidden ${expandedIndex === index ? "max-h-96" : "max-h-16"
+                      className={`transition-all duration-500 ease-in-out overflow-hidden ${expandedIndex === index ? "max-h-auto" : "max-h-16"
                         }`}
                     >
-                      <p className="text-gray-700">
+                      <p style={{textAlign : isRtl ? "right" : "left"}} className="text-gray-700">
                         {getLocalizedValue(post, "content")}
                       </p>
                     </div>
 
                     <button
+                    style={{textAlign : isRtl ? "right" : "left"}}
                       onClick={() => toggleAccordion(index)}
                       className="btn btn-primary rounded-pill text-white py-2 px-4 mt-3"
                     >

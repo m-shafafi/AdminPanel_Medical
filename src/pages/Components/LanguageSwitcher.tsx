@@ -28,17 +28,18 @@ const LanguageSwitcher = () => {
   return (
     <div className="relative inline-block">
       <select
-        value={lang}
-        onChange={handleChange}
-        className="appearance-none bg-transparent px-2 py-1 text-blue-950 focus:outline-none"
-        style={{ fontSize: "1rem",borderColor:"transparent" }} // برای بزرگ‌تر شدن پرچم‌ها
-      >
-        {languages.map(({ code, label, flag }) => (
-          <option key={code} value={code}>
-            {flag} {label}
-          </option>
-        ))}
-      </select>
+  value={lang}
+  onChange={handleChange}
+  className="appearance-none bg-transparent px-3 py-1 text-blue-950 focus:outline-none border-none"
+  style={{ fontSize: "1rem" }}
+>
+  {languages.map(({ code, label, flag }) => (
+    <option key={code} value={code}>
+      {flag} {label}
+    </option>
+  ))}
+</select>
+
     </div>
   );
 };

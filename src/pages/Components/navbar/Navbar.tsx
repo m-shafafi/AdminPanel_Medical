@@ -69,16 +69,37 @@ const Navbar = () => {
         </NavLink>
 
         {/* Desktop Menu */}
-        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", flexDirection: isRtl ? "row" : "row-reverse" }}>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            gap: 3,
+            alignItems: "center",
+            flexDirection: "row", // همیشه ردیفی باشه
+            justifyContent: isRtl ? "flex-start" : "flex-end",
+            direction: isRtl ? "rtl" : "ltr", // مهم
+          }}
+        >
+
           {navLinks.map(link => (
-            <Button key={link.to} component={NavLink} to={link.to}
-              sx={{ color: "text.primary", fontWeight: 500, textTransform: "none", transition: "all 0.3s", "&:hover": { color: "primary.main", transform: "scale(1.05)" } }}>
+            <Button
+              key={link.to}
+              component={NavLink}
+              to={link.to}
+              sx={{
+                color: "text.primary",
+                fontWeight: 600,       // Bold تر
+                fontSize: { xs: "0.9rem", md: "1rem" }, // اندازه Responsive
+                textTransform: "none",
+                transition: "all 0.3s",
+                "&:hover": { color: "primary.main", transform: "scale(1.05)" },
+              }}
+            >
               {link.label}
             </Button>
           ))}
 
           <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "products")}>{t("navigation.products")}</Button>
-          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose} 
+          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose}
             PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
             anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "left" : "right" }}
             transformOrigin={{ vertical: "top", horizontal: isRtl ? "left" : "right" }}>
@@ -101,16 +122,42 @@ const Navbar = () => {
             ))}
           </Menu>
 
-          <LanguageSwitcher />
+
         </Box>
 
         {/* Mobile Hamburger Menu */}
         <Box sx={{ display: { xs: "flex", md: "none" } }}>
           <IconButton onClick={(e) => setMobileAnchor(e.currentTarget)}><MenuIcon /></IconButton>
-          <Menu anchorEl={mobileAnchor} open={Boolean(mobileAnchor)} onClose={handleClose}
-            PaperProps={{ sx: { borderRadius: 2, px: 2, py: 2, minWidth: 220, boxShadow: "0 8px 20px rgba(0,0,0,0.15)" } }}>
+          <Menu
+            anchorEl={mobileAnchor}
+            open={Boolean(mobileAnchor)}
+            onClose={handleClose}
+            PaperProps={{
+              sx: {
+                borderRadius: 2,
+                px: 2,
+                py: 2,
+                minWidth: 220,
+                boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+                direction: isRtl ? "rtl" : "ltr",   // 👈 این مهمه
+              }
+            }}
+          >
             {navLinks?.map(link => (
-              <MenuItem key={link.to} component={NavLink} to={link.to} onClick={handleClose}>{link.label}</MenuItem>
+              <MenuItem
+                key={link.to}
+                component={NavLink}
+                to={link.to}
+                onClick={handleClose}
+                sx={{
+                  textAlign: isRtl ? "right" : "left",
+                  "&:hover": { backgroundColor: "primary.light" }, // برای دسکتاپ
+                  "&:active": { backgroundColor: "primary.light" }, // برای موبایل تاچ
+                }}
+              >
+                {link.label}
+              </MenuItem>
+
             ))}
 
             {/* Products accordion */}
@@ -133,7 +180,9 @@ const Navbar = () => {
               ))}
             </Collapse>
           </Menu>
+
         </Box>
+        <LanguageSwitcher />
       </Toolbar>
     </AppBar>
   );

@@ -65,8 +65,8 @@ const Products = () => {
           >
             <div className="sub-style">
               <h1
-                className="sub-title px-3 mb-0 font-black"
-                style={{ fontSize: "6rem" }}
+                className="sub-title px-3 mb-0 font-black display-5"
+
               >
                 {getLocalizedValueCategury(state, "name")}
               </h1>

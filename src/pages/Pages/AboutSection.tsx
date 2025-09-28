@@ -46,8 +46,8 @@ const AboutSection = () => {
             {/* متن */}
             <div className="col-12 col-lg-7">
               <div className="section-title mb-4">
-                <h1 className="display-5 mb-3" style={{textAlign : isRtl ? "right" : "left"}}>{t("about.title")}</h1>
-                <p className="text-dark mb-3" style={{ fontWeight: "600", textAlign : isRtl ? "right" : "left"}}>
+                <h1 className="display-5 mb-3" style={{ textAlign: "center" }}>{t("about.title")}</h1>
+                <p className="text-dark mb-3" style={{ fontWeight: "600", textAlign: isRtl ? "right" : "left" }}>
                   {t("about.description")}
                 </p>
 

@@ -11,6 +11,7 @@ interface GallerySectionProps {
 }
 
 const GalleryScrollPage = ({ galleries }: GallerySectionProps) => {
+
   const groupedGalleries = useMemo(() => {
     const groups: Record<number, GalleryResponse[]> = {};
     galleries.forEach(item => {
@@ -38,6 +39,8 @@ const GalleryScrollPage = ({ galleries }: GallerySectionProps) => {
 };
 
 const GalleryStep = ({ items }: { items: GalleryResponse[] }) => {
+  const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
+
   const getLocalizedValue = (item: GalleryResponse, field: "title") => {
     const langMap: Record<string, keyof GalleryResponse> = {
       "en-GB": `${field}_EN`,
@@ -49,8 +52,8 @@ const GalleryStep = ({ items }: { items: GalleryResponse[] }) => {
   };
 
   return (
-<section className="snap-start flex flex-col items-center justify-center p-6">
-      <h2 className="text-2xl font-bold mb-6">
+    <section className="snap-start flex flex-col items-center justify-center p-6">
+      <h2 className="text-2xl font-bold mb-6" style={{ textAlign: "center" }}>
         {getLocalizedValue(items[0], "title")}
       </h2>
 

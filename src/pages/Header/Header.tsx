@@ -70,7 +70,7 @@ const Header = (props: Props) => {
                   <Link to={item.url} className="hover:underline !text-blue-950">
                     {item.desc}
                   </Link>
-    {index !== (props.menu?.length ?? 0) - 1 && <span className="mx-1">/</span>}
+                  {index !== (props.menu?.length ?? 0) - 1 && <span className="mx-1">/</span>}
                 </Box>
               ))}
             </Box>
@@ -81,13 +81,18 @@ const Header = (props: Props) => {
             <Typography
               variant="body1"
               sx={{
-                color: "white",
-                fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                fontFamily: "'Vazirmatn', sans-serif", // فونت فارسی زیبا
+                fontWeight: 700,                        // Bold
+                fontSize: { xs: ".7rem", md: "1.2rem" }, // اندازه Responsive
+                color: "#0f172a",                        // جایگزین text-blue-950
                 textAlign: { xs: "center", md: props.textAlignTxt ?? "left" },
+                lineHeight: 1.4,                        // فاصله خطوط بهتر
+                letterSpacing: "0.5px",                 // فاصله حروف بهتر
               }}
             >
               {props.txtDescBanner}
             </Typography>
+
           )}
         </Box>
       )}

@@ -47,6 +47,7 @@ const Header = (props: Props) => {
               variant="h2"
               sx={{
                 fontWeight: 800,
+                textAlign: "center",
                 color: "black",
                 mb: 1,
                 fontSize: { xs: "1.5rem", sm: "2.5rem", md: "3rem" },

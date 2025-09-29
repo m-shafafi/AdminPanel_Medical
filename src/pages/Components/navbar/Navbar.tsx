@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
 import i18n from "i18n";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import useGetAllTrainingCategories from "hooks/useGetAllTrainingCategories";
 import useGetAllCategoryProduct from "hooks/useGetAllCategoryProduct";
 import TrainingCategoriesListResponse from "common/entities/Education/TrainingCategoriesListResponse";
@@ -19,15 +26,19 @@ import LanguageSwitcher from "../LanguageSwitcher";
 
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
   switch (i18n.language) {
-    case "en-GB": return item[`${field}_EN`];
-    case "ar-GB": return item[`${field}_AR`];
-    default: return item[`${field}_FA`];
+    case "en-GB":
+      return item[`${field}_EN`];
+    case "ar-GB":
+      return item[`${field}_AR`];
+    default:
+      return item[`${field}_FA`];
   }
 };
 
 const Navbar = () => {
   const { t } = useTranslation();
   const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
+  const location = useLocation();
 
   const { data: trainingData } = useGetAllTrainingCategories();
   const [trainingCategories, setTrainingCategories] = useState<TrainingCategoriesListResponse[]>([]);
@@ -39,152 +50,235 @@ const Navbar = () => {
     if (categoryProduct?.length) setProductCategories(categoryProduct as CategoryProductListResponse[]);
   }, [trainingData, categoryProduct]);
 
+  // Mobile Drawer
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [educationOpen, setEducationOpen] = useState(false);
+
+  // Desktop Menu Anchors
   const [anchorProducts, setAnchorProducts] = useState<null | HTMLElement>(null);
   const [anchorEducation, setAnchorEducation] = useState<null | HTMLElement>(null);
-  const [mobileAnchor, setMobileAnchor] = useState<null | HTMLElement>(null);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const [mobileEducationOpen, setMobileEducationOpen] = useState(false);
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>, type: "products" | "education") => {
-    if (type === "products") setAnchorProducts(event.currentTarget);
-    if (type === "education") setAnchorEducation(event.currentTarget);
-  };
-  const handleClose = () => { setAnchorProducts(null); setAnchorEducation(null); setMobileAnchor(null); };
-
-  const navLinks = [
-    { label: t("navigation.home"), to: "/" },
-    { label: t("navigation.about"), to: "/about" },
+  const otherLinks = [
     { label: t("navigation.catalogs"), to: "/catalogs" },
     { label: t("navigation.gallery"), to: "/gallery" },
     { label: t("navigation.articles"), to: "/NewsAndArticlesPage" },
     { label: t("navigation.contact"), to: "/contact" },
   ];
-
+  const navItemStyle = (isActive: boolean) => ({
+    fontSize: "18px",
+    fontWeight: isActive ? 700 : 500,
+    color: isActive ? "#1976d2" : "black",
+    textDecoration: "none",
+    "&:hover": { color: "#1976d2" },
+  });
   return (
-    <AppBar position="sticky" elevation={6} sx={{ backgroundColor: "white", borderRadius: 2, px: { xs: 2, md: 4 }, py: 1, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        {/* Logo */}
-        <NavLink to="/">
-          <img src="https://zhubinshahyad.com/media/Files/img/Logo.png" alt="Logo" style={{ width: 72, height: 72, objectFit: "contain" }} />
-        </NavLink>
-
-        {/* Desktop Menu */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            gap: 3,
-            alignItems: "center",
-            flexDirection: "row", // همیشه ردیفی باشه
-            justifyContent: isRtl ? "flex-start" : "flex-end",
-            direction: isRtl ? "rtl" : "ltr", // مهم
-          }}
+    <>
+      {/* AppBar */}
+      <AppBar position="sticky" sx={{ backgroundColor: "white", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
+        <Toolbar
+          className={isRtl ? "mr-6" : "ml-6"}
+          sx={{ display: "flex", justifyContent: "space-between", minHeight: 80 }}
         >
+          {/* Mobile Menu Button */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton onClick={() => setDrawerOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+          </Box>
 
-          {navLinks.map(link => (
-            <Button
+          {/* Desktop Links */}
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", direction: isRtl ? "rtl" : "ltr" }}>
+            {/* Home */}
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              <Box
+                sx={{
+                  color: location.pathname === "/" ? "#1976d2" : "black",
+                  fontWeight: location.pathname === "/" ? 700 : 500,
+                  "&:hover": { color: "#1976d2" },
+                }}
+              >
+                {t("navigation.home")}
+              </Box>
+            </NavLink>
+
+            {/* Products */}
+            <Box
+
+              sx={{
+                cursor: "pointer",
+                ...navItemStyle(location.pathname === "/products"),
+              }}
+              onClick={(e) => setAnchorProducts(e.currentTarget)}
+            >
+              {t("navigation.products")}
+            </Box>
+            <Menu
+              anchorEl={anchorProducts}
+              open={Boolean(anchorProducts)}
+              onClose={() => setAnchorProducts(null)}
+              anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
+              transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}
+            >
+              {productCategories.map(item => {
+                const isActive = location.pathname === "/products" && location.state?.id === item.id;
+                return (
+                  <MenuItem
+                    key={item.id}
+                    component={NavLink}
+                    to="/products"
+                    state={item}
+                    onClick={() => setAnchorProducts(null)}
+                    sx={navItemStyle(location.pathname === "/products" && location.state?.id === item.id)}
+
+                  >
+                    {getLocalizedValue(item, "name")}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+
+            {/* Education */}
+            <Box
+              sx={{
+                cursor: "pointer",
+                ...navItemStyle(location.pathname === "/education"),
+              }}
+              onClick={(e) => setAnchorEducation(e.currentTarget)}
+            >
+              {t("navigation.education")}
+            </Box>
+            <Menu
+              anchorEl={anchorEducation}
+              open={Boolean(anchorEducation)}
+              onClose={() => setAnchorEducation(null)}
+              anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "right" : "left" }}
+              transformOrigin={{ vertical: "top", horizontal: isRtl ? "right" : "left" }}
+            >
+              {trainingCategories.map(item => {
+                const isActive = location.pathname === "/education" && location.state?.id === item.id;
+                return (
+                  <MenuItem
+                    key={item.id}
+                    component={NavLink}
+                    to="/education"
+                    state={item}
+                    onClick={() => setAnchorEducation(null)}
+                    sx={navItemStyle(location.pathname === "/products" && location.state?.id === item.id)}
+
+                  >
+                    {item.name}
+                  </MenuItem>
+                );
+              })}
+            </Menu>
+
+            {/* Other Links */}
+            {otherLinks.map(link => {
+              const isActive = location.pathname === link.to;
+              return (
+                <NavLink key={link.to} to={link.to} style={{ textDecoration: "none" }}>
+                  <Box sx={navItemStyle(isActive)}>{link.label}</Box>
+                </NavLink>
+              );
+            })}
+          </Box>
+
+          {/* LanguageSwitcher + Logo */}
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <LanguageSwitcher />
+            <Box
+              component="img"
+              src="https://zhubinshahyad.com/media/Files/img/Logo.png"
+              alt="Logo"
+              sx={{ width: 100, height: 100, objectFit: "cover" }}
+            />
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        anchor={isRtl ? "right" : "left"}
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        PaperProps={{ sx: { width: 250, direction: isRtl ? "rtl" : "ltr" } }}
+      >
+        <Box sx={{ px: 2, py: 1 }}>
+          <LanguageSwitcher onSelect={() => setDrawerOpen(false)} />
+        </Box>
+        <List>
+          {/* Home */}
+          <ListItemButton
+            component={NavLink}
+            to="/"
+            onClick={() => setDrawerOpen(false)}
+            sx={{
+              color: location.pathname === "/" ? "#1976d2" : "black",
+              fontWeight: location.pathname === "/" ? 500 : 400,
+            }}
+          >
+            <ListItemText primary={t("navigation.home")} />
+          </ListItemButton>
+
+          {/* Products */}
+          <ListItemButton onClick={() => setProductsOpen(!productsOpen)}>
+            <ListItemText primary={t("navigation.products")} />
+            <ExpandMoreIcon sx={{ transform: productsOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.25s" }} />
+          </ListItemButton>
+          <Collapse in={productsOpen} timeout="auto" unmountOnExit>
+            {productCategories.map(item => (
+              <ListItemButton
+                key={item.id}
+                component={NavLink}
+                to="/products"
+                state={item}
+                onClick={() => setDrawerOpen(false)}
+                sx={{ pl: 4, color: location.pathname === "/products" && location.state?.id === item.id ? "#1976d2" : "black" }}
+              >
+                <ListItemText primary={getLocalizedValue(item, "name")} />
+              </ListItemButton>
+            ))}
+          </Collapse>
+
+          {/* Education */}
+          <ListItemButton onClick={() => setEducationOpen(!educationOpen)}>
+            <ListItemText primary={t("navigation.education")} />
+            <ExpandMoreIcon sx={{ transform: educationOpen ? "rotate(180deg)" : "rotate(0deg)", transition: "0.25s" }} />
+          </ListItemButton>
+          <Collapse in={educationOpen} timeout="auto" unmountOnExit>
+            {trainingCategories.map(item => (
+              <ListItemButton
+                key={item.id}
+                component={NavLink}
+                to="/education"
+                state={item}
+                onClick={() => setDrawerOpen(false)}
+                sx={{ pl: 4, color: location.pathname === "/education" && location.state?.id === item.id ? "#1976d2" : "black" }}
+              >
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            ))}
+          </Collapse>
+
+          {/* Other Links */}
+          {otherLinks.map(link => (
+            <ListItemButton
               key={link.to}
               component={NavLink}
               to={link.to}
+              onClick={() => setDrawerOpen(false)}
               sx={{
-                color: "text.primary",
-                fontWeight: 600,       // Bold تر
-                fontSize: { xs: "0.9rem", md: "1rem" }, // اندازه Responsive
-                textTransform: "none",
-                transition: "all 0.3s",
-                "&:hover": { color: "primary.main", transform: "scale(1.05)" },
+                color: location.pathname === link.to ? "#1976d2" : "black",
+                fontWeight: location.pathname === link.to ? 500 : 400,
               }}
             >
-              {link.label}
-            </Button>
+              <ListItemText primary={link.label} />
+            </ListItemButton>
           ))}
-
-          <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "products")}>{t("navigation.products")}</Button>
-          <Menu anchorEl={anchorProducts} open={Boolean(anchorProducts)} onClose={handleClose}
-            PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
-            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "left" : "right" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "left" : "right" }}>
-            {productCategories?.map(item => (
-              <MenuItem key={item.id} component={NavLink} to="/products" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
-                {getLocalizedValue(item, "name")}
-              </MenuItem>
-            ))}
-          </Menu>
-
-          <Button sx={{ fontWeight: 500 }} onClick={(e) => handleOpen(e, "education")}>{t("navigation.education")}</Button>
-          <Menu anchorEl={anchorEducation} open={Boolean(anchorEducation)} onClose={handleClose}
-            PaperProps={{ sx: { borderRadius: 2, px: 1, py: 1, boxShadow: "0 8px 20px rgba(0,0,0,0.1)" } }}
-            anchorOrigin={{ vertical: "bottom", horizontal: isRtl ? "left" : "right" }}
-            transformOrigin={{ vertical: "top", horizontal: isRtl ? "left" : "right" }}>
-            {trainingCategories?.map(item => (
-              <MenuItem key={item.id} component={NavLink} to="/education" state={item} sx={{ "&:hover": { backgroundColor: "primary.light" } }} onClick={handleClose}>
-                {item.name}
-              </MenuItem>
-            ))}
-          </Menu>
-
-
-        </Box>
-
-        {/* Mobile Hamburger Menu */}
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-          <IconButton onClick={(e) => setMobileAnchor(e.currentTarget)}><MenuIcon /></IconButton>
-          <Menu
-            anchorEl={mobileAnchor}
-            open={Boolean(mobileAnchor)}
-            onClose={handleClose}
-            PaperProps={{
-              sx: {
-                borderRadius: 2,
-                px: 2,
-                py: 2,
-                minWidth: 220,
-                boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
-                direction: isRtl ? "rtl" : "ltr",   // 👈 این مهمه
-              }
-            }}
-          >
-            {navLinks?.map(link => (
-              <MenuItem
-                key={link.to}
-                component={NavLink}
-                to={link.to}
-                onClick={handleClose}
-                sx={{
-                  textAlign: isRtl ? "right" : "left",
-                  "&:hover": { backgroundColor: "primary.light" }, // برای دسکتاپ
-                  "&:active": { backgroundColor: "primary.light" }, // برای موبایل تاچ
-                }}
-              >
-                {link.label}
-              </MenuItem>
-
-            ))}
-
-            {/* Products accordion */}
-            <MenuItem onClick={() => setMobileProductsOpen(prev => !prev)}>{t("navigation.products")}</MenuItem>
-            <Collapse in={mobileProductsOpen} timeout="auto" unmountOnExit>
-              {productCategories?.map(item => (
-                <MenuItem key={item.id} component={NavLink} to="/products" state={item} onClick={handleClose} sx={{ pl: 4 }}>
-                  {getLocalizedValue(item, "name")}
-                </MenuItem>
-              ))}
-            </Collapse>
-
-            {/* Education accordion */}
-            <MenuItem onClick={() => setMobileEducationOpen(prev => !prev)}>{t("navigation.education")}</MenuItem>
-            <Collapse in={mobileEducationOpen} timeout="auto" unmountOnExit>
-              {trainingCategories?.map(item => (
-                <MenuItem key={item.id} component={NavLink} to="/education" state={item} onClick={handleClose} sx={{ pl: 4 }}>
-                  {item.name}
-                </MenuItem>
-              ))}
-            </Collapse>
-          </Menu>
-
-        </Box>
-        <LanguageSwitcher />
-      </Toolbar>
-    </AppBar>
+        </List>
+      </Drawer>
+    </>
   );
 };
 

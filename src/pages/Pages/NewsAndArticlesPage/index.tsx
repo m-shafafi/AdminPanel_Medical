@@ -55,7 +55,7 @@ const NewsAndArticlesPage = () => {
       />
       <div className="container-fluid blog py-5">
         <div className="container py-5">
-    
+
           <div className="row g-4 justify-content-center">
             {newsComment.map((post, index) => (
               <div
@@ -69,20 +69,20 @@ const NewsAndArticlesPage = () => {
                       src={post.imageURL}
                       className="w-full h-64 object-contain rounded mb-3"
                     />
-                    <p style={{textAlign : isRtl ? "right" : "left"}} className="h4 mb-2">{getLocalizedValue(post, "title")}</p>
+                    <p style={{ textAlign: isRtl ? "right" : "left" }} className="h4 mb-2">{getLocalizedValue(post, "title")}</p>
 
                     {/* Accordion Content */}
                     <div
                       className={`transition-all duration-500 ease-in-out overflow-hidden ${expandedIndex === index ? "max-h-auto" : "max-h-16"
                         }`}
                     >
-                      <p style={{textAlign : isRtl ? "right" : "left"}} className="text-gray-700">
+                      <p style={{ textAlign: isRtl ? "right" : "left" }} className="text-gray-700">
                         {getLocalizedValue(post, "content")}
                       </p>
                     </div>
 
                     <button
-                    style={{textAlign : isRtl ? "right" : "left"}}
+                      style={{ textAlign: isRtl ? "right" : "left" }}
                       onClick={() => toggleAccordion(index)}
                       className="btn btn-primary rounded-pill text-white py-2 px-4 mt-3"
                     >

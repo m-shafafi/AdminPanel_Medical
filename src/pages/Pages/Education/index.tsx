@@ -54,6 +54,9 @@ const Education = () => {
       <Topbar />
       <Navbar />
       <Header
+        claasNameTitleBanner="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
+        imgBannerClassName="w-full  object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
+        textAlignTxt="center"
         imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
         txtTitleBanner={t("navigation.education")}
         menu={[

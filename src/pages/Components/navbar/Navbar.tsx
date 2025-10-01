@@ -24,6 +24,7 @@ import TrainingCategoriesListResponse from "common/entities/Education/TrainingCa
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import LanguageSwitcher from "../LanguageSwitcher";
 
+
 const getLocalizedValue = (item: CategoryProductListResponse, field: "name") => {
   switch (i18n.language) {
     case "en-GB":
@@ -63,6 +64,7 @@ const Navbar = () => {
     { label: t("navigation.catalogs"), to: "/catalogs" },
     { label: t("navigation.gallery"), to: "/gallery" },
     { label: t("navigation.articles"), to: "/NewsAndArticlesPage" },
+    { label: t("navigation.about"), to: "/about" },
     { label: t("navigation.contact"), to: "/contact" },
   ];
   const navItemStyle = (isActive: boolean) => ({
@@ -86,6 +88,19 @@ const Navbar = () => {
               <MenuIcon />
             </IconButton>
           </Box>
+
+          {/* Logo همیشه وسط موبایل */}
+          <Box
+            component="img"
+            src="https://zhubinshahyad.com/media/Files/img/Logo.png"
+            alt="Logo"
+            sx={{
+              display: { xs: "flex", md: "none" },
+              width: 70,
+              height: 70,
+              objectFit: "cover",
+            }}
+          />
 
           {/* Desktop Links */}
           <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, alignItems: "center", direction: isRtl ? "rtl" : "ltr" }}>
@@ -195,15 +210,18 @@ const Navbar = () => {
             />
           </Box>
         </Toolbar>
+
       </AppBar>
 
       {/* Mobile Drawer */}
+
       <Drawer
         anchor={isRtl ? "right" : "left"}
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         PaperProps={{ sx: { width: 250, direction: isRtl ? "rtl" : "ltr" } }}
       >
+
         <Box sx={{ px: 2, py: 1 }}>
           <LanguageSwitcher onSelect={() => setDrawerOpen(false)} />
         </Box>

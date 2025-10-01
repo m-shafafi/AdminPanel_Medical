@@ -46,12 +46,16 @@ const NewsAndArticlesPage = () => {
       <Topbar />
       <Navbar />
       <Header
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
+        claasNameTitleBanner="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        imgBannerClassName="w-full h-full object-cover"
+        textAlignTxt="center"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/BannerGallery.jpg"
         txtTitleBanner={t("navigation.articles")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
         ]}
+        height="500px"
       />
       <div className="container-fluid blog py-5">
         <div className="container py-5">

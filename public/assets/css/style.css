@@ -147,7 +147,11 @@ body {
     position: relative;
     display: inline-block;
     text-transform: uppercase;
-    color: var(--bs-primary);
+    color: #0B6B7D ;
+}
+
+.bg-white {
+  background-color: #def7ff !important;
 }
 
 .sub-title::before {

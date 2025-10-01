@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import useIsMobile from "pages/useIsMobile";
 
 type MenuItem = {
   url: string;
@@ -10,47 +11,59 @@ type MenuItem = {
 
 type Props = {
   txtTitleBanner?: string;
+  claasNameTitleBanner?: string;
   txtDescBanner?: string;
   menu?: MenuItem[];
   imgBanner: string;
+  imgBannerClassName?: string;
   textAlignTxt?: "left" | "center" | "right";
   height?: string;
 };
 
 const Header = (props: Props) => {
+  const IsMobile = useIsMobile();
+
   return (
     <Box
-      className="relative w-full"
-      sx={{ height: props.height ?? { xs: "250px", sm: "350px", md: "500px" } }}
+      className="relative w-full "
+      sx={{ height: props.height }}
     >
       {/* تصویر */}
       <img
         src={props.imgBanner}
         alt="Banner"
-        className="w-full h-full object-cover"
+        className={props.imgBannerClassName
+          + " object-cover " +
+          (IsMobile ? "h-full" : "")}
+
+
       />
 
       {/* overlay نیمه شفاف */}
       <Box
-        className="absolute top-0 left-0 w-full h-full"
+        className="absolute top-0 left-0 w-full"
       />
 
       {/* متن روی تصویر */}
       {(props.txtTitleBanner || props.txtDescBanner) && (
         <Box
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          sx={{ maxWidth: "90%", textAlign: props.textAlignTxt ?? "center" }}
+          className={props.claasNameTitleBanner}
+          sx={{
+            maxWidth: "90%",
+            textAlign: { xs: props.textAlignTxt, md: props.textAlignTxt }, // والد ریسپانسیو
+          }}
         >
+
           {/* عنوان */}
           {props.txtTitleBanner && (
             <Typography
               variant="h2"
               sx={{
-                fontWeight: 800,
-                textAlign: "center",
+                fontWeight: { xs: 400, sm: 400, md: 600 },
+                textAlign: { xs: "center", md: "center" },
                 color: "black",
                 mb: 1,
-                fontSize: { xs: "1.5rem", sm: "2.5rem", md: "3rem" },
+                fontSize: { xs: "1.2rem", sm: "2.5rem", md: "3rem" },
               }}
             >
               {props.txtTitleBanner}

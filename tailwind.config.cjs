@@ -5,7 +5,11 @@ module.exports = {
         "./src/**/*.{js,ts,jsx,tsx}" // تمام فایل‌های JSX/TSX داخل src
     ],
     theme: {
-        extend: {},
+        extend: {
+            height: {
+                '500': '500px',
+            }
+        },
     },
     plugins: [],
 };

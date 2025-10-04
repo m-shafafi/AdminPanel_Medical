@@ -10,13 +10,14 @@ import TrainingCategoriesListResponse from "common/entities/Education/TrainingCa
 import VideoPlayer from "pages/Components/VideoPlayer";
 import LoadingModal from "pages/Components/Loading/Loading";
 import Navbar from "pages/Components/navbar/Navbar";
+import useIsMobile from "pages/useIsMobile";
 
 
 const Education = () => {
   const { t } = useTranslation();
   const currentLang = i18n.language;
   const location = useLocation();
-
+  const IsMobile = useIsMobile();
   const state = location.state as TrainingCategoriesListResponse | null;
   const [loading, setLoading] = useState(true);
 
@@ -54,10 +55,13 @@ const Education = () => {
       <Topbar />
       <Navbar />
       <Header
-        claasNameTitleBanner="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
-        imgBannerClassName="w-full  object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
+        claasNameTitleBanner={
+          IsMobile ? "absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-0"
+            : "absolute top-1/2 l left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-0"
+        }
+        imgBannerClassName="w-full   object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
         textAlignTxt="center"
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner13.jpg"
         txtTitleBanner={t("navigation.education")}
         menu={[
           { url: "/", desc: t("navigation.home") },
@@ -69,7 +73,7 @@ const Education = () => {
         <LoadingModal isOpen={loading} message="Please wait, processing..." />
 
       ) : (
-        <div className="container-fluid blog py-5">
+        <div className="container-fluid blog py-5 z-10">
           <div className="container">
             <div className="section-title  wow fadeInUp" data-wow-delay="0.1s">
               {/* <div className="sub-style">

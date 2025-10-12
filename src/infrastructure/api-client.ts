@@ -41,7 +41,7 @@ axiosInstanceProfiles.interceptors.request.use((config) => {
 
 class APIClient<TBody, TResponse> {
   endpoint: string;
-  constructor(endpoint: string, serviceKey: "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl" | "galleryApiBaseUrl") {
+  constructor(endpoint: string, serviceKey: "productsApiBaseUrl" | "educationApiBaseUrl" | "newsApiBaseUrl" | "galleryApiBaseUrl" | "contactApiBaseUrl") {
     const { baseUrl } = ApiConfigSingleton.getApiConfig(serviceKey);
     this.endpoint = baseUrl + endpoint;
   }

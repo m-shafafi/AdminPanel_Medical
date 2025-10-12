@@ -5,11 +5,31 @@ import Navbar from "pages/Components/navbar/Navbar";
 import Topbar from "../../Components/Topbar";
 import i18n from "../../../i18n";
 import React from "react";
+import SetContactCommand from "business/application/Contact/SetContactCommand";
+import { useStepContext } from "@mui/material";
+import UseAddContact from "hooks/UseAddContact";
+import { useForm } from "react-hook-form";
 
 const Contact = () => {
   const { t } = useTranslation();
   const isRTL = i18n.language === "fa-IR" || i18n.language === "ar-GB";
+  const { register, handleSubmit, reset } = useForm<SetContactCommand>();
+  const { mutate: sendContact, isPending } = UseAddContact();
 
+  const handleSendContact = (data: SetContactCommand) => {
+    console.log("shod")
+    console.log(data)
+    sendContact(data, {
+      onSuccess: () => {
+        alert(t("contact.successMessage"));
+        reset();
+      },
+      onError: (error) => {
+        console.error(error);
+        alert(error);
+      }
+    });
+  };
   return (
     <>
       <Topbar />
@@ -115,12 +135,13 @@ const Contact = () => {
                   <i className="fab fa-linkedin-in"></i>
                 </a>
               </div>
-              <form>
+              <form onSubmit={handleSubmit(handleSendContact)}>
                 <div className="row g-3">
                   <div className="col-lg-12 col-xl-6">
                     <div className="form-floating">
                       <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="name">{t('contact.CustomerName')}</label>
                       <input
+                        {...register("Name")}
                         type="text"
                         className="form-control bg-transparent border border-white "
                         id="name"
@@ -132,6 +153,7 @@ const Contact = () => {
                   <div className="col-lg-12 col-xl-6">
                     <div className="form-floating">
                       <input
+                        {...register("Email")}
                         type="email"
                         className="form-control bg-transparent border border-white"
                         id="email"
@@ -143,6 +165,7 @@ const Contact = () => {
                   <div className="col-lg-12 col-xl-6">
                     <div className="form-floating">
                       <input
+                        {...register("Phone")}
                         type="phone"
                         className="form-control bg-transparent border border-white"
                         id="phone"
@@ -152,21 +175,11 @@ const Contact = () => {
                       <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="phone">{t('contact.MobileTitle')}</label>
                     </div>
                   </div>
-                  <div className="col-lg-12 col-xl-6">
-                    <div className="form-floating">
-                      <input
-                        type="text"
-                        className="form-control bg-transparent border border-white"
-                        id="project"
-                        placeholder={t('contact.CustomerProject')}
-                        style={{ textAlign: isRTL ? "right" : "left" }}
-                      />
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="project">{t('contact.CustomerProject')}</label>
-                    </div>
-                  </div>
+
                   <div className="col-12">
                     <div className="form-floating">
                       <input
+                        {...register("Subject")}
                         type="text"
                         className="form-control bg-transparent border border-white"
                         id="subject"
@@ -179,6 +192,7 @@ const Contact = () => {
                   <div className="col-12">
                     <div className="form-floating">
                       <textarea
+                        {...register("Message")}
                         className="form-control bg-transparent border border-white"
                         placeholder="Leave a message here"
                         id="message"
@@ -188,7 +202,9 @@ const Contact = () => {
                     </div>
                   </div>
                   <div className="col-12">
-                    <button className="btn btn-light text-primary w-100 py-3">{t('contact.SendMessage')}</button>
+                    <button disabled={isPending} className="btn btn-light text-primary w-100 py-3">
+                      {isPending ? t("contact.sending") : t("contact.SendMessage")}
+                    </button>
                   </div>
                 </div>
               </form>

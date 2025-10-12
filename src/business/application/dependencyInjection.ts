@@ -12,3 +12,5 @@ export * from "../application/News/NewsComments/GetAllNewsCommentsQueryHandler";
 export * from "../application/Education/GetAllTrainingQueryHandler";
 export * from "../application/Gallery/GetAllGalleryQuery";
 export * from "../application/Gallery/GetAllGalleryQueryHandler";
+export * from "../application/Contact/SetContactCommand";
+export * from "../application/Contact/SetContactCommandHandler";

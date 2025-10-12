@@ -2,7 +2,7 @@ steps docker :
 docker build -t medicalsite .
 docker run -p 3000:80 medicalsite
 docker save medicalsite -o medicalsite.tar
-scp medicalsite.tar root@89.32.250.205:/root/Backups/web/14040712
-docker load -i Backups/web/14040712/medicalsite.tar
+scp medicalsite.tar root@89.32.250.205:/root/Backups/web/14040719
+docker load -i Backups/web/14040719/medicalsite.tar
 
 docker run -d --name medicalsite -p 3001:80 medicalsite:latest

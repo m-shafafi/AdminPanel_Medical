@@ -57,7 +57,7 @@ const AboutSection = () => {
             >
 
               <div className="section-title">
-                <h1 className="display-5 mb-4" style={{ textAlign: "center" }}>{t("about.title")}</h1>
+                <h1 className="display-6 mb-4" style={{ textAlign: "center" }}>{t("about.title")}</h1>
                 <p className="text-dark mb-3" style={{ fontWeight: "600", textAlign: isRtl ? "right" : "left" }}>
                   {t("about.description")}
                 </p>

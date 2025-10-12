@@ -9,6 +9,7 @@ import i18n from "i18n";
 import CategoryProductListResponse from "common/entities/Product/CategoryProductListResponse";
 import GenericSection from "../../Components/Generic/GenericSection";
 import { ProductListResponse } from "common/entities/Product/ProductListResponse";
+import useIsMobile from "pages/useIsMobile";
 
 
 
@@ -17,6 +18,7 @@ const Products = () => {
   const location = useLocation();
   const state = location.state as CategoryProductListResponse;
   const [openProductId, setOpenProductId] = useState<number | null>(null);
+  const isMobile = useIsMobile(); // true/false
 
   const toggleAccordion = (id: number) => {
     setOpenProductId(openProductId === id ? null : id);
@@ -50,15 +52,19 @@ const Products = () => {
       <Topbar />
       <Navbar />
       <Header
-        claasNameTitleBanner="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
-        imgBannerClassName="w-full  object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
+        claasNameTitleBanner={isMobile
+          ? "absolute top-2/4  left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
+          : "absolute top-1/4  left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
+        }
+        imgBannerClassName="w-full h-5/6 object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
         textAlignTxt="center"
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner.png"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/ProductBanner.jpg"
         txtTitleBanner={t("navigation.products")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
         ]}
+        height="60%"
       />
       <div className="container-fluid feature py-5">
         <div className="container py-5">

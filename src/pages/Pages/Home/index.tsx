@@ -31,7 +31,7 @@ const Home = () => {
 
         imgBannerClassName={
           isMobile ?
-            "w-full l object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]" : "w-full l object-cover  [mask-repeat:no-repeat]"}
+            "w-full l object-cover " : "w-full l object-cover"}
         textAlignTxt='left'
         txtTitleBanner={t("txtTitleBanner")}
         txtDescBanner={t("txtDescBanner")}

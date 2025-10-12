@@ -26,21 +26,21 @@ const GalleryPage = () => {
 
   const [galleries, setGallery] = useState<GalleryResponse[]>([]);
 
-  const groupedGalleries = useMemo(() => {
-    if (!galleries || galleries.length === 0) return [];
-    const groups: Record<number, GalleryResponse[]> = {};
-    galleries.forEach(item => {
-      if (!groups[item.categoriesGalleryId]) {
-        groups[item.categoriesGalleryId] = [];
-      }
-      groups[item.categoriesGalleryId].push(item);
-    });
+  // const groupedGalleries = useMemo(() => {
+  //   if (!galleries || galleries.length === 0) return [];
+  //   const groups: Record<number, GalleryResponse[]> = {};
+  //   galleries.forEach(item => {
+  //     if (!groups[item.categoriesGalleryId]) {
+  //       groups[item.categoriesGalleryId] = [];
+  //     }
+  //     groups[item.categoriesGalleryId].push(item);
+  //   });
 
-    return Object.entries(groups).map(([id, items]) => ({
-      id: Number(id),
-      items
-    }));
-  }, [galleries]);
+  //   return Object.entries(groups).map(([id, items]) => ({
+  //     id: Number(id),
+  //     items
+  //   }));
+  // }, [galleries]);
 
   useEffect(() => {
     if (!data || data.length === 0) return;

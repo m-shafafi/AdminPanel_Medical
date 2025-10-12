@@ -1,18 +1,30 @@
 
-/*** Spinner Start ***/
-/*** Spinner ***/
-/* src/index.css یا src/assets/styles/fonts.css */
-/* در این صورت باید فونت را ایمپورت کنی */
 @font-face {
-  font-family: 'Vazirmatn';
-  src: url('../assets/fonts/Vazirmatn.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-body {
-  font-family: 'Vazirmatn', sans-serif !important;
+  font-family: 'Iran Sans';
+  src: url('../assets/fonts/Iranian Sans') format('woff2');
+
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('../assets/fonts/Cairo.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+body {
+  font-family: 'Iran Sans', 'Cairo', 'Poppins', sans-serif;
+    font-weight: 400;
+  line-height: 1.6;
+}
 
 #spinner {
     opacity: 0;

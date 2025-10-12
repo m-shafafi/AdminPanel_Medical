@@ -30,7 +30,7 @@ const Education = () => {
 
   const { data } = useGetAllTraining(currentLang);
   const [training, setTrainings] = useState<TrainingListResponse[]>([]);
-
+  const isMobile = useIsMobile(); // true/false
   useEffect(() => {
     if (!data || data.length === 0) {
       setLoading(false);
@@ -49,24 +49,25 @@ const Education = () => {
     setLoading(false);
   }, [data, state?.id]);
 
-  console.log({ training })
   return (
     <>
       <Topbar />
       <Navbar />
       <Header
         claasNameTitleBanner={
-          IsMobile ? "absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-0"
-            : "absolute top-1/2 l left-1/2 -translate-x-1/2 -translate-y-1/2 md:-translate-x-0"
+          isMobile
+            ? "absolute top-2/4  left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
+            : "absolute top-1/4  left-1/2 -translate-x-1/2 -translate-y-1/2  md:-translate-x-0"
         }
-        imgBannerClassName="w-full   object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
+        imgBannerClassName="w-full h-5/6 object-cover [mask-image:linear-gradient(to_right,transparent,black)] [mask-repeat:no-repeat]"
         textAlignTxt="center"
-        imgBanner="https://zhubinshahyad.com/media/Files/img/About/Banner13.jpg"
+        imgBanner="https://zhubinshahyad.com/media/Files/img/About/BannerGallery.jpg"
         txtTitleBanner={t("navigation.education")}
         menu={[
           { url: "/", desc: t("navigation.home") },
           { url: "/contact", desc: t("navigation.contact") },
         ]}
+        height="50%"
       />
 
       {loading ? (

@@ -11,5 +11,7 @@ export interface SendMessageRequest {
   IsRead: boolean;
   CategoryId: number;
   Phone: string;
+  creationDateTimeShamsi: string;
+  modificationDateTimeShamsi: string;
 }
 

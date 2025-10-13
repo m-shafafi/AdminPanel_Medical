@@ -42,5 +42,8 @@
   "contacts_sales_contact": "Sales Manager",
   "contacts_support_contact": "Support",
   "contacts_sales_phone": "+98 9106069008",
-  "contacts_support_phone": "+98 9106069008"
+  "contacts_support_phone": "+98 9120189352",
+  "contact.successMessage": "Your message has been sent successfully.",
+    "contact.sending":"Sending message..."
+
 }

@@ -43,5 +43,7 @@
   "contacts_sales_contact": "مدیر فروش",
   "contacts_support_contact": " پشتیبانی",
   "contacts_sales_phone": "+98 9106069008",
-  "contacts_support_phone": "+98 9106069008"
+  "contacts_support_phone": "+98 9120189352",
+  "contact.successMessage":"پیام شما با موفقیت ارسال گردید.",
+  "contact.sending":"در حال ارسال پیام"
 }

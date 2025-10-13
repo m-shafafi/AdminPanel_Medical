@@ -4,11 +4,11 @@ import SetContactCommand from "./SetContactCommand";
 import { IRequestHandler, requestHandler } from "@Mediatr/index";
 import { addContact } from "infrastructure/end-points";
 import APIClient from "infrastructure/api-client";
+import { toShamsiString } from "common/entities/toShamsiString";
 
 @requestHandler(SetContactCommand)
 export class SetContactCommandHandler
-  implements IRequestHandler<SetContactCommand, SendMessageResponse>
-{
+  implements IRequestHandler<SetContactCommand, SendMessageResponse> {
   async handle(value: SetContactCommand): Promise<SendMessageResponse> {
     const apiClient = new APIClient<SendMessageRequest, SendMessageResponse>(
       addContact,
@@ -22,14 +22,18 @@ export class SetContactCommandHandler
       Message: value.Message,
       IsRead: true,
       CategoryId: 1,
-      Phone: value.Phone
+      Phone: value.Phone,
+      creationDateTimeShamsi: toShamsiString(new Date()),
+      modificationDateTimeShamsi: toShamsiString(new Date())
     };
 
     try {
       const response = await apiClient.post(payload);
+      console.log({ response })
       return response;
     } catch (error) {
       console.error("Error sending contact message:", error);
+      console.log({ error })
       throw error;
     }
   }

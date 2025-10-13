@@ -11,7 +11,6 @@ export default class SetContactCommand implements IRequest<SendMessageResponse> 
     CategoryId: number;
     Phone: string;
 
-
     constructor(formData: SetContactCommand) {
         console.log({ formData })
         this.Name = formData?.Name;
@@ -21,6 +20,7 @@ export default class SetContactCommand implements IRequest<SendMessageResponse> 
         this.IsRead = formData?.IsRead;
         this.CategoryId = formData?.CategoryId;
         this.Phone = formData?.Phone;
+        console.log(this)
     }
 
 }

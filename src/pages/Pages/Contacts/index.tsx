@@ -17,15 +17,13 @@ const Contact = () => {
   const { mutate: sendContact, isPending } = UseAddContact();
 
   const handleSendContact = (data: SetContactCommand) => {
-    console.log("shod")
-    console.log(data)
+
     sendContact(data, {
       onSuccess: () => {
         alert(t("contact.successMessage"));
         reset();
       },
       onError: (error) => {
-        console.error(error);
         alert(error);
       }
     });
@@ -139,15 +137,15 @@ const Contact = () => {
                 <div className="row g-3">
                   <div className="col-lg-12 col-xl-6">
                     <div className="form-floating">
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="name">{t('contact.CustomerName')}</label>
+
                       <input
                         {...register("Name")}
                         type="text"
-                        className="form-control bg-transparent border border-white "
+                        className="form-control bg-white text-black border border-white "
                         id="name"
                         placeholder="Your Name"
                       />
-
+                      <label className=" text-black " style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="name">{t('contact.CustomerName')}</label>
                     </div>
                   </div>
                   <div className="col-lg-12 col-xl-6">
@@ -155,11 +153,11 @@ const Contact = () => {
                       <input
                         {...register("Email")}
                         type="email"
-                        className="form-control bg-transparent border border-white"
+                        className="form-control border border-white  bg-white"
                         id="email"
                         placeholder="Your Email"
                       />
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="email">{t('contact.CustomerEmail')}</label>
+                      <label className=" text-black " style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="email">{t('contact.CustomerEmail')}</label>
                     </div>
                   </div>
                   <div className="col-lg-12 col-xl-6">
@@ -167,12 +165,12 @@ const Contact = () => {
                       <input
                         {...register("Phone")}
                         type="phone"
-                        className="form-control bg-transparent border border-white"
+                        className="form-control bg-white border border-white"
                         id="phone"
                         placeholder={t('contact.MobileTitle')}
                         style={{ textAlign: isRTL ? "right" : "left" }}
                       />
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="phone">{t('contact.MobileTitle')}</label>
+                      <label className=" text-black " style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="phone">{t('contact.MobileTitle')}</label>
                     </div>
                   </div>
 
@@ -181,24 +179,24 @@ const Contact = () => {
                       <input
                         {...register("Subject")}
                         type="text"
-                        className="form-control bg-transparent border border-white"
+                        className="form-control bg-white border border-white"
                         id="subject"
                         placeholder={t('contact.CustomerSubject')}
                         style={{ textAlign: isRTL ? "right" : "left" }}
                       />
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="subject">{t('contact.CustomerSubject')}</label>
+                      <label className=" text-black " style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="subject">{t('contact.CustomerSubject')}</label>
                     </div>
                   </div>
                   <div className="col-12">
                     <div className="form-floating">
                       <textarea
                         {...register("Message")}
-                        className="form-control bg-transparent border border-white"
+                        className="form-control bg-white border border-white"
                         placeholder="Leave a message here"
                         id="message"
                         style={{ height: '160px', textAlign: isRTL ? "right" : "left" }}
                       ></textarea>
-                      <label style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="message">{t('contact.CustomerMessage')}</label>
+                      <label className=" text-black " style={isRTL ? { right: 0 } : { left: 0 }} htmlFor="message">{t('contact.CustomerMessage')}</label>
                     </div>
                   </div>
                   <div className="col-12">

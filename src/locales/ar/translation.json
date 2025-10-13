@@ -41,5 +41,7 @@
   "contacts_sales_contact": "مدير المبيعات",
   "contacts_support_contact": " الدعم",
   "contacts_sales_phone": "+98 9120 189352",
-  "contacts_support_phone": "+98 9106 069008"
+  "contacts_support_phone": "+98 9120189352",
+  "contact.successMessage": "تم إرسال رسالتك بنجاح.",
+  "contact.sending": "جارٍ إرسال الرسالة..."
 }

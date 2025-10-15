@@ -44,6 +44,21 @@
   "contacts_sales_phone": "+98 9106069008",
   "contacts_support_phone": "+98 9120189352",
   "contact.successMessage": "Your message has been sent successfully.",
-    "contact.sending":"Sending message..."
+    "contact.sending":"Sending message...",
+    "product.name_EN": "Product Name",
+    "product.description_EN": "Product Description",
+    "product.price": "Price",
+    "product.stock": "Stock",
+    "product.sku": "SKU",
+    "product.brand": "Brand",
+    "product.brandId": "Brand ID",
+    "product.categoryId": "Category ID",
+    "product.categoryName_EN": "Category Name",
+    "product.catalogURL": "Catalog URL",
+    "product.catalogCoverImageUrl": "Catalog Cover Image",
+    "product.warranty": "Warranty",
+    "product.rating": "Rating",
+    "product.save": "Save",
+    "product.saving": "Saving..."
 
 }

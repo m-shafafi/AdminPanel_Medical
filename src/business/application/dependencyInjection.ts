@@ -1,5 +1,5 @@
-export * from "../application/Product/GetAllProductQuery";
-export * from "../application/Product/GetAllProductQueryHandler";
+export * from "../application/Product/Query/GetAllProductQuery";
+export * from "../application//Product/Query/GetAllProductQueryHandler";
 export * from "../application/Product/Category/GetAllCategoryProductQuery";
 export * from "../application/Product/Category/GetAllCategoryProductQueryHandler";
 export * from "../application/Education/GetAllTrainingQuery";
@@ -14,3 +14,9 @@ export * from "../application/Gallery/GetAllGalleryQuery";
 export * from "../application/Gallery/GetAllGalleryQueryHandler";
 export * from "../application/Contact/SetContactCommand";
 export * from "../application/Contact/SetContactCommandHandler";
+export * from "../application/Gallery/GetAllGalleryQueryHandler";
+export * from "../application/Contact/SetContactCommand";
+export * from "../application/Contact/SetContactCommandHandler";
+export * from "../application/Gallery/GetAllGalleryQueryHandler";
+export * from "../application/Product/Command/SetProductCommand";
+export * from "../application/Product/Command/SetContactCommandHandler";

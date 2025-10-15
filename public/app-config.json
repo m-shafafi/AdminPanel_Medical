@@ -1,9 +1,9 @@
 {
   "serviceUrls": {
-    "productsApiBaseUrl": "/productsApi/",
-    "newsApiBaseUrl": "/newsApi/",
-    "educationApiBaseUrl": "/educationApi/",
-    "galleryApiBaseUrl": "/galleryApi/",
-    "contactApiBaseUrl": "/contactApi/"
+    "productsApiBaseUrl": "http://127.0.0.1:20000",
+    "newsApiBaseUrl": "http://127.0.0.1:20002",
+    "educationApiBaseUrl": "http://127.0.0.1:20003",
+    "galleryApiBaseUrl": "http://127.0.0.1:20004",
+    "contactApiBaseUrl": "http://127.0.0.1:20005"
   }
 }

@@ -43,5 +43,20 @@
   "contacts_sales_phone": "+98 9120 189352",
   "contacts_support_phone": "+98 9120189352",
   "contact.successMessage": "تم إرسال رسالتك بنجاح.",
-  "contact.sending": "جارٍ إرسال الرسالة..."
+  "contact.sending": "جارٍ إرسال الرسالة...",
+  "product.name_AR": "اسم المنتج",
+  "product.description_AR": "وصف المنتج",
+  "product.price": "السعر",
+  "product.stock": "المخزون",
+  "product.sku": "رمز المنتج",
+  "product.brand": "العلامة التجارية",
+  "product.brandId": "معرف العلامة التجارية",
+  "product.categoryId": "معرف الفئة",
+  "product.categoryName_AR": "اسم الفئة",
+  "product.catalogURL": "رابط الكتالوج",
+  "product.catalogCoverImageUrl": "صورة غلاف الكتالوج",
+  "product.warranty": "الضمان",
+  "product.rating": "التقييم",
+  "product.save": "حفظ",
+  "product.saving": "جارٍ الحفظ..."
 }

@@ -9,7 +9,8 @@ import useGetArticleById from "hooks/News/useGetArticleById";
 import SetNewsCommand from "business/application/News/NewsComments/Commands/Craete/SetNewsCommand";
 import NewsCommentsRequest from "common/entities/News/NewsCommentsRequest";
 
-interface NewsFormData {
+interface NewsArticle {
+    id?: number;
     title_FA: string;
     summary_FA: string;
     content_FA: string;
@@ -33,7 +34,7 @@ const NewsArticleForm: React.FC = () => {
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === "fa-IR" || i18n.language === "ar-GB";
 
-    const { register, handleSubmit, reset } = useForm<NewsFormData>();
+    const { register, handleSubmit, reset } = useForm<NewsArticle>();
     const { mutate: saveNews, isPending: isPendingSet } = useAddOrEditNews();
     const { mutate: articleById, isPending: isPendingGet } = useGetArticleById();
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -52,15 +53,29 @@ const NewsArticleForm: React.FC = () => {
         }
     };
 
-    const onSubmit = async (data: NewsFormData) => {
+    const onSubmit = async (data: NewsArticle) => {
         // شبیه‌سازی آپلود تصویر
         let uploadedImageUrl = data.imageURL;
         if (imageFile) {
-            // اینجا باید API واقعی آپلود تصویر رو صدا بزنی
-            uploadedImageUrl = URL.createObjectURL(imageFile);
+            uploadedImageUrl = URL.createObjectURL(imageFile); // فقط برای نمایش موقت
         }
-
-        const payload = NewsCommentsRequest
+        const payload: NewsCommentsRequest = {
+            title_FA: data.title_FA || "",
+            Summary_FA: data.summary_FA || "",
+            content_FA: data.content_FA || "",
+            title_EN: data.title_EN || "",
+            Summary_EN: data.summary_EN || "",
+            content_EN: data.content_EN || "",
+            title_AR: data.title_AR || "",
+            Summary_AR: data.summary_AR || "",
+            content_AR: data.content_AR || "",
+            imageURL: uploadedImageUrl || "",
+            creationDateTime: new Date().toISOString(),
+            creationDateTimeShamsi: toShamsiString(new Date()),
+            modificationDateTime: new Date().toISOString(),
+            modificationDateTimeShamsi: toShamsiString(new Date()),
+            authorID: data.authorID
+        };
 
         saveNews(new SetNewsCommand(payload), {
             onSuccess: () => {
@@ -109,10 +124,10 @@ const NewsArticleForm: React.FC = () => {
 
                 <button
                     type="submit"
-                    disabled={isPending}
+                    disabled={isPendingSet}
                     className="mt-4 px-4 py-2 bg-blue-600 text-white rounded"
                 >
-                    {isPending ? t("news.saving") : t("news.save")}
+                    {isPendingSet ? t("news.saving") : t("news.save")}
                 </button>
             </form>
         </div>

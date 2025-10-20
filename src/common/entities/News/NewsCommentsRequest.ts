@@ -1,6 +1,5 @@
 export default interface NewsCommentsRequest {
-  Id: number;
-  newsArticleID: number;
+  authorID: number;
   content_AR: string | null; // اگر ممکنه خالی باشه
   title_AR: string;
   Summary_AR: string;

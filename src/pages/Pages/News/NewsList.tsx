@@ -1,8 +1,6 @@
 // src/pages/ProductsList.tsx
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import useGetAllProducts from "../../../hooks/Products/useGetAllProduct";
-import { ProductListResponse } from "common/entities/Product/ProductListResponse";
 import { useTranslation } from "react-i18next";
 import useGetAllNewsComment from "hooks/useGetAllNewsComment";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
@@ -34,7 +32,7 @@ export default function NewsList() {
                 <h2 className="text-xl font-bold mb-4">مدیریت اخبار</h2>
                 <button
                     className="bg-blue-600 text-white px-3 py-1 rounded mb-4"
-                    onClick={() => navigate("/admin/products/new")}
+                    onClick={() => navigate("/Setnews")}
                 >
                     خبر جدید
                 </button>

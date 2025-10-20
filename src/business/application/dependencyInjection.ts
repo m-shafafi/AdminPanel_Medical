@@ -8,7 +8,10 @@ export * from "../application/Education/Categories/GetAllTrainingCategoriesQuery
 export * from "../application/Education/Categories/GetAllTrainingCategoriesQueryHandler";
 export * from "../application/Education/GetAllTrainingQueryHandler";
 export * from "./News/NewsComments/Get/GetAllNewsCommentsQuery";
-export * from "../application/News/NewsComments/GetAllNewsCommentsQueryHandler";
+export * from "../application/News/NewsComments/Get/GetAllNewsCommentsQueryHandler";
+export * from "../application/Education/GetAllTrainingQueryHandler";
+export * from "./News/NewsComments/Commands/Craete/SetNewsCommand";
+export * from "../application/News/NewsComments/Commands/Craete/SetNewsCommandHandler";
 export * from "../application/Education/GetAllTrainingQueryHandler";
 export * from "../application/Gallery/GetAllGalleryQuery";
 export * from "../application/Gallery/GetAllGalleryQueryHandler";

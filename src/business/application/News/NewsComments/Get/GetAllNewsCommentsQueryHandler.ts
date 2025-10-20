@@ -2,7 +2,7 @@ import APIClient from "infrastructure/api-client";
 import { GetAllNewsComment, GetAllTraining } from "infrastructure/end-points";
 import { IRequestHandler, requestHandler } from "@Mediatr/index";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
-import GetAllNewsCommentsQuery from "./Get/GetAllNewsCommentsQuery";
+import GetAllNewsCommentsQuery from "./GetAllNewsCommentsQuery";
 
 
 @requestHandler(GetAllNewsCommentsQuery)

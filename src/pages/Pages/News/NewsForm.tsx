@@ -28,7 +28,7 @@ interface NewsArticle {
 }
 
 
-const NewsArticleForm: React.FC = () => {
+const NewsArticleForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();

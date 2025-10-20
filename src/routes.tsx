@@ -6,6 +6,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import ProductsList from "pages/Pages/Products/ProductsList";
 import NewsList from "pages/Pages/News/NewsList";
+import NewsArticleForm from "pages/Pages/News/NewsForm";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +24,11 @@ export const router = createBrowserRouter([
         index: true,
         path: "/news",
         element: < NewsList />,
+      },
+      {
+        index: true,
+        path: "/Setnews",
+        element: < NewsArticleForm />,
       },
       {
         index: true,

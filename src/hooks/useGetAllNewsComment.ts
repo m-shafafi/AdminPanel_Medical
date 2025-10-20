@@ -3,14 +3,14 @@ import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Mediator } from "@Mediatr/index";
 import ms from "ms";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
-import GetAllNewsCommentsQuery from "business/application/News/NewsComments/GetAllNewsCommentsQuery";
+import GetAllNewsCommentsQuery from "business/application/News/NewsComments/Get/GetAllNewsCommentsQuery";
 import { useEffect } from "react";
 
 
 const mediator = new Mediator();
 
- const useGetAllNewsComment = () => {
-   const query =useQuery({
+const useGetAllNewsComment = () => {
+  const query = useQuery({
     queryKey: ['GetAllNewsComment'],
     queryFn: () =>
       mediator.send<NewsCommentsResponse[]>(
@@ -19,13 +19,13 @@ const mediator = new Mediator();
     staleTime: ms('30m'),
     retry: false
   });
-useEffect(() => {
+  useEffect(() => {
     if (query.isSuccess) {
       console.log("ddd", query.data);
     }
   }, [query.isSuccess, query.data]);
 
-useEffect(() => {
+  useEffect(() => {
     if (query.isError) {
       console.log("hooks error", query.error);
     }

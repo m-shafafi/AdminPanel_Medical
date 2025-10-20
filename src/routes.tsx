@@ -5,6 +5,7 @@ import Home from "./pages/Pages/Home";
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import ProductsList from "pages/Pages/Products/ProductsList";
+import NewsList from "pages/Pages/News/NewsList";
 
 
 export const router = createBrowserRouter([
@@ -20,12 +21,17 @@ export const router = createBrowserRouter([
       },
       {
         index: true,
+        path: "/news",
+        element: < NewsList />,
+      },
+      {
+        index: true,
         path: "/products",
         element: < ProductForm />,
       },
       {
         index: true,
-        path: "/products",
+        path: "/productsList",
         element: < ProductsList />,
       },
     ],

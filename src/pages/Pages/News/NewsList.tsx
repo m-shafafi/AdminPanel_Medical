@@ -1,97 +1,120 @@
 // src/pages/ProductsList.tsx
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import useGetAllNewsComment from "hooks/useGetAllNewsComment";
+import { useNavigate } from "react-router-dom";
+import useGetAllNewsComment from "hooks/News/useGetAllNewsComment";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
-import i18n from "i18n";
+import { Table, TableBody, TableCell, TableHeader, TableRow } from "components/ui/table";
+import TextPreviewModal from "components/common/TextPreviewModal";
 
 export default function NewsList() {
-    const { t } = useTranslation();
-    const location = useLocation();
     const navigate = useNavigate();
-
-    const { data, error } = useGetAllNewsComment();
+    const { data } = useGetAllNewsComment();
     const [newsComment, setNewsComment] = useState<NewsCommentsResponse[]>([]);
-    const isRtl = i18n.language === "fa-IR" || i18n.language === "ar-GB";
+    const [modalOpen, setModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState<{ title: string; text: string }>({ title: "", text: "" });
 
     useEffect(() => {
-        if (!data || data.length === 0) return;
-        setNewsComment(data);
+        if (data) setNewsComment(data);
     }, [data]);
 
-    const handleDelete = async (id: number) => {
+    const openModal = (title: string, text: string) => {
+        setModalContent({ title, text });
+        setModalOpen(true);
+    };
+
+    const closeModal = () => setModalOpen(false);
+
+    const handleDelete = (id: number) => {
         if (window.confirm("آیا مطمئنی می‌خوای حذفش کنی؟")) {
-            //await ProductApi.delete(id);
-            setNewsComment(prev => prev.filter(p => p.Id !== id));
+            setNewsComment(prev => prev.filter(p => p.id !== id));
         }
     };
-    return (
-        <>
-            <div className="p-4">
-                <h2 className="text-xl font-bold mb-4">مدیریت اخبار</h2>
-                <button
-                    className="bg-blue-600 text-white px-3 py-1 rounded mb-4"
-                    onClick={() => navigate("/Setnews")}
+
+    const renderCell = (title: string, text?: string | null) => (
+        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 break-words max-w-[200px]">
+            {text ? (
+                <div
+                    onClick={() => openModal(title, text)}
+                    className="cursor-pointer truncate hover:underline"
+                    title={text}
                 >
-                    خبر جدید
-                </button>
+                    {text.length > 80 ? text.substring(0, 80) + "..." : text}
+                </div>
+            ) : (
+                "-"
+            )}
+        </TableCell>
+    );
 
-                <table className="w-full border">
-                    <thead>
-                        <tr className="bg-gray-200 text-gray-800">
-                            <th className="p-2 border">#</th>
-                            <th className="p-2 border">خلاصه (عربی)</th>
-                            <th className="p-2 border">خلاصه (انگلیسی)</th>
-                            <th className="p-2 border">خلاصه (فارسی)</th>
-                            <th className="p-2 border">محتوا (عربی)</th>
-                            <th className="p-2 border">محتوا (انگلیسی)</th>
-                            <th className="p-2 border">محتوا (فارسی)</th>
-                            <th className="p-2 border">تصویر</th>
-                            <th className="p-2 border">عنوان (عربی)</th>
-                            <th className="p-2 border">عنوان (انگلیسی)</th>
-                            <th className="p-2 border">عنوان (فارسی)</th>
-                            <th className="p-2 border">آدرس تصویر</th>
-                            <th className="p-2 border">عملیات</th>
-                        </tr>
-                    </thead>
+    return (
+        <div className="p-4">
+            <h2 className="text-xl font-bold mb-4">مدیریت اخبار</h2>
+            <button
+                className="bg-blue-600 text-white px-3 py-1 rounded mb-4"
+                onClick={() => navigate("/Setnews")}
+            >
+                خبر جدید
+            </button>
 
-                    <tbody>
-                        {newsComment.map((p) => (
-                            <tr key={p.Id}>
-                                <td className="p-2 border">{p.Id}</td>
-                                <td className="p-2 border">{p.Summary_AR}</td>
-                                <td className="p-2 border">{p.Summary_EN}</td>
-                                <td className="p-2 border">{p.Summary_FA}</td>
-                                <td className="p-2 border">{p.content_AR}</td>
-                                <td className="p-2 border">{p.content_EN}</td>
-                                <td className="p-2 border">{p.content_FA}</td>
-                                <td className="p-2 border">{p.imageURL}</td>
-                                <td className="p-2 border">{p.title_AR}</td>
-                                <td className="p-2 border">{p.title_EN}</td>
-                                <td className="p-2 border">{p.title_FA}</td>
-                                <td className="p-2 border">{p.imageURL}</td>
+            <Table className="overflow-hidden rounded-xl border border-black-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+                <TableHeader>
+                    <TableRow>
+                        <TableCell isHeader>#</TableCell>
+                        <TableCell isHeader>خلاصه (عربی)</TableCell>
+                        <TableCell isHeader>خلاصه (انگلیسی)</TableCell>
+                        <TableCell isHeader>خلاصه (فارسی)</TableCell>
+                        <TableCell isHeader>محتوا (عربی)</TableCell>
+                        <TableCell isHeader>محتوا (انگلیسی)</TableCell>
+                        <TableCell isHeader>محتوا (فارسی)</TableCell>
+                        <TableCell isHeader>عنوان (عربی)</TableCell>
+                        <TableCell isHeader>عنوان (انگلیسی)</TableCell>
+                        <TableCell isHeader>عنوان (فارسی)</TableCell>
+                        <TableCell isHeader>تصویر</TableCell>
+                        <TableCell isHeader>عملیات</TableCell>
+                    </TableRow>
+                </TableHeader>
 
+                <TableBody>
+                    {newsComment.map((p, idx) => (
+                        <TableRow key={p.id}>
+                            <TableCell>{idx + 1}</TableCell>
+                            {renderCell("خلاصه عربی", p.summary_AR)}
+                            {renderCell("خلاصه انگلیسی", p.summary_EN)}
+                            {renderCell("خلاصه فارسی", p.summary_FA)}
+                            {renderCell("محتوا عربی", p.content_AR ?? undefined)}
+                            {renderCell("محتوا انگلیسی", p.content_EN ?? undefined)}
+                            {renderCell("محتوا فارسی", p.content_FA ?? undefined)}
+                            {renderCell("عنوان عربی", p.title_AR)}
+                            {renderCell("عنوان انگلیسی", p.title_EN)}
+                            {renderCell("عنوان فارسی", p.title_FA)}
+                            {renderCell("تصویر", p.imageURL)}
+                            <TableCell>
+                                <button
+                                    onClick={() => navigate(`/admin/products/${p.id}/edit`)}
+                                    className="text-blue-600 mx-1"
+                                >
+                                    ✏️ ویرایش
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(p.id)}
+                                    className="text-red-600 mx-1"
+                                >
+                                    🗑 حذف
+                                </button>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
 
-                                <td className="p-2 border">
-                                    <button
-                                        onClick={() => navigate(`/admin/products/${p.Id}/edit`)}
-                                        className="text-blue-600 mx-1"
-                                    >
-                                        ✏️ ویرایش
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(p.Id!)}
-                                        className="text-red-600 mx-1"
-                                    >
-                                        🗑 حذف
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-        </>
+            {modalOpen && (
+                <TextPreviewModal
+                    open={modalOpen}
+                    onClose={closeModal}
+                    title={modalContent.title}
+                    content={modalContent.text}
+                />
+            )}
+        </div>
     );
 }

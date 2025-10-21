@@ -8,6 +8,10 @@ import useAddOrEditNews from "hooks/News/useAddOrEditNews";
 import useGetArticleById from "hooks/News/useGetArticleById";
 import SetNewsCommand from "business/application/News/NewsComments/Commands/Craete/SetNewsCommand";
 import NewsCommentsRequest from "common/entities/News/NewsCommentsRequest";
+import useGetCategoryNews from "hooks/News/useGetCategoryNews";
+import TextArea from "components/form/input/TextArea";
+import TextAreaInput from "components/form/form-elements/TextAreaInput";
+import Label from "components/form/Label";
 
 interface NewsArticle {
     id?: number;
@@ -33,19 +37,15 @@ const NewsArticleForm = () => {
     const navigate = useNavigate();
     const { t, i18n } = useTranslation();
     const isRTL = i18n.language === "fa-IR" || i18n.language === "ar-GB";
-
+    const [message, setMessage] = useState("");
+    const [messageTwo, setMessageTwo] = useState("");
     const { register, handleSubmit, reset } = useForm<NewsArticle>();
     const { mutate: saveNews, isPending: isPendingSet } = useAddOrEditNews();
-    const { mutate: articleById, isPending: isPendingGet } = useGetArticleById();
+    const { data: articleById, isPending: isPendingGet } = useGetArticleById();
+    const { data: categoryNews, isPending: isPendingGetCategory } = useGetCategoryNews();
     const [imageFile, setImageFile] = useState<File | null>(null);
 
-    // useEffect(() => {
-    //     if (id) {
-    //         axios.get(`${API_BASE}/GetArticleById/${id}`).then((res) => {
-    //             reset(res.data);
-    //         });
-    //     }
-    // }, [id, reset]);
+
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -109,7 +109,18 @@ const NewsArticleForm = () => {
 
                     {/* عربی */}
                     <input {...register("title_AR")} placeholder="عنوان عربی" className="border p-2" />
-                    <textarea {...register("summary_AR")} placeholder="خلاصه عربی" className="border p-2" />
+                    {/* <TextAreaInput {...register("summary_AR")} placeholder="خلاصه عربی" className="border p-2" /> */}
+
+                    <div>
+                        <Label>Description</Label>
+                        <TextArea
+
+                            value={message}
+                            onChange={(value) => setMessage(value)}
+                            rows={6}
+                        />
+                    </div>
+
                     <textarea {...register("content_AR")} placeholder="محتوای عربی" className="border p-2 h-24" />
 
                     {/* سایر فیلدها */}

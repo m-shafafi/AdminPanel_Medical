@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router";
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
+import { Link } from "react-router-dom";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
+import { ChevronLeftIcon, EyeClosedIcon, EyeIcon } from "lucide-react";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -139,7 +139,7 @@ export default function SignUpForm() {
                       {showPassword ? (
                         <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
                       ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
+                        <EyeClosedIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
                       )}
                     </span>
                   </div>

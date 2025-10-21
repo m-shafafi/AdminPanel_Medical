@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from '@tailwindcss/vite'
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   server: {
@@ -14,5 +15,5 @@ export default defineConfig({
       '/galleryApi': 'http://127.0.0.1:20004'
     }
   },
-  plugins: [react(), tailwindcss(), tsconfigPaths()]
+  plugins: [react(), svgr(), tailwindcss(), tsconfigPaths()]
 });

@@ -3,7 +3,7 @@ import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Mediator } from "@Mediatr/index";
 import ms from "ms";
 import NewsCommentsResponse from "common/entities/News/NewsCommentsResponse";
-import GetAllNewsCommentsQuery from "business/application/News/NewsComments/Get/GetAllNewsCommentsQuery";
+import GetAllNewsCommentsQuery from "business/application/News/NewsComments/Query/GetById/GetAllNewsCommentsQuery";
 import { useEffect } from "react";
 
 

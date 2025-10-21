@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { MoreDotIcon } from "../../icons";
 import CountryMap from "./CountryMap";
 
 export default function DemographicCard() {
@@ -26,9 +25,9 @@ export default function DemographicCard() {
           </p>
         </div>
         <div className="relative inline-block">
-          <button className="dropdown-toggle" onClick={toggleDropdown}>
+          {/* <button className="dropdown-toggle" onClick={toggleDropdown}>
             <MoreDotIcon className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 size-6" />
-          </button>
+          </button> */}
           <Dropdown
             isOpen={isOpen}
             onClose={closeDropdown}

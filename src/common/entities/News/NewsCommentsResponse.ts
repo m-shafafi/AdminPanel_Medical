@@ -1,17 +1,21 @@
 export default interface NewsCommentsResponse {
-  Id: number;
-  newsArticleID: number;
-  content_AR: string | null; // اگر ممکنه خالی باشه
-  title_AR: string;
-  Summary_AR: string;
-  content_FA: string | null; // اگر ممکنه خالی باشه
+  id: number;
+  authorID: number;
+  categoryID: number;
   title_FA: string;
-  Summary_FA: string;
-  content_EN: string | null; // اگر ممکنه خالی باشه
+  summary_FA: string;
+  content_FA: string | null;
   title_EN: string;
-  Summary_EN: string;
+  summary_EN: string;
+  content_EN: string | null;
+  title_AR: string;
+  summary_AR: string;
+  content_AR: string | null;
+  tags: string;
   imageURL: string;
+  viewsCount: number;
+  publishedDate: string;
+  postedDate: string;
   creationDateTime: string;
   modificationDateTime: string;
-
 }

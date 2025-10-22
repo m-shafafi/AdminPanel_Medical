@@ -10,7 +10,6 @@ import SetNewsCommand from "business/application/News/NewsComments/Commands/Crae
 import NewsCommentsRequest from "common/entities/News/NewsCommentsRequest";
 import useGetCategoryNews from "hooks/News/useGetCategoryNews";
 import TextArea from "components/form/input/TextArea";
-import TextAreaInput from "components/form/form-elements/TextAreaInput";
 import Label from "components/form/Label";
 
 interface NewsArticle {
@@ -41,8 +40,9 @@ const NewsArticleForm = () => {
     const [messageTwo, setMessageTwo] = useState("");
     const { register, handleSubmit, reset } = useForm<NewsArticle>();
     const { mutate: saveNews, isPending: isPendingSet } = useAddOrEditNews();
-    const { data: articleById, isPending: isPendingGet } = useGetArticleById();
+    // const { data: articleById, isPending: isPendingGet } = useGetArticleById();
     const { data: categoryNews, isPending: isPendingGetCategory } = useGetCategoryNews();
+    console.log(categoryNews)
     const [imageFile, setImageFile] = useState<File | null>(null);
 
 
@@ -124,9 +124,16 @@ const NewsArticleForm = () => {
                     <textarea {...register("content_AR")} placeholder="محتوای عربی" className="border p-2 h-24" />
 
                     {/* سایر فیلدها */}
-                    <input {...register("tags")} placeholder="تگ‌ها" className="border p-2" />
-                    <input {...register("authorID")} placeholder="شناسه نویسنده" type="number" className="border p-2" />
-                    <input {...register("categoryID")} placeholder="شناسه دسته‌بندی" type="number" className="border p-2" />
+                    <input {...register("tags")} placeholder="شناسه دسته‌بندی" className="border p-2" />
+                    <select {...register("categoryID")} className="border p-2">
+                        <option value="">{t("news.selectCategory")}</option>
+                        {categoryNews?.map((c: any) => (
+                            <option key={c.id} value={c.id}>
+                                {c.title_FA || c.name}
+                            </option>
+                        ))}
+                    </select>
+
                     <input {...register("publishedDate")} placeholder="تاریخ انتشار" type="date" className="border p-2" />
 
                     {/* تصویر */}
